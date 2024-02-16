@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46125369-f5d7-4679-9277-eab7cffa7342" name="Changes" comment="4 module" />
+    <list default="true" id="46125369-f5d7-4679-9277-eab7cffa7342" name="Changes" comment="1 com" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,9 +160,9 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.tee" />
       <item itemvalue="Python.double" />
       <item itemvalue="Python.original" />
+      <item itemvalue="Python.tee" />
       <item itemvalue="Python.web" />
     </list>
     <recent_temporary>
