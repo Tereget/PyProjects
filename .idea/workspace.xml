@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46125369-f5d7-4679-9277-eab7cffa7342" name="Changes" comment="1 com" />
+    <list default="true" id="46125369-f5d7-4679-9277-eab7cffa7342" name="Changes" comment="12">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -230,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708094137075</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="12">
+      <option name="closed" value="true" />
+      <created>1708097961239</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708097961239</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -238,6 +248,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="2" />
     <MESSAGE value="4 module" />
-    <option name="LAST_COMMIT_MESSAGE" value="4 module" />
+    <MESSAGE value="12" />
+    <option name="LAST_COMMIT_MESSAGE" value="12" />
   </component>
 </project>
