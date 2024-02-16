@@ -132,7 +132,7 @@ class WordCounterOnTheSite:
 """
 Тестеры.
 """
-# x = WordCounterOnTheSite('https://stepik.org/media/attachments/lesson/209723/5.html')
+# x = WordCounterOnTheSite('https://stepik.org/media/attachments/lesson/209717/1.html')
 
 # print(x.total_score('Python'))                  # https://stepik.org/media/attachments/lesson/209717/1.html
 # print(x.visible_on_the_site('Python'))          # https://ru.wikipedia.org/wiki/Python
