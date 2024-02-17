@@ -6,7 +6,7 @@ class FindingInformationInXML:
 
         # Получаем данные из файла в текстовом виде.
         try:
-            with open(file_name, 'r', encoding='utf8') as inf:
+            with open('scr/' + file_name, 'r', encoding='utf8') as inf:
                 xml = inf.read()
             self.parsedxml = xmltodict.parse(xml)
         except Exception:
@@ -75,7 +75,7 @@ class FindingInformationInXML:
 """
 Тестеры.
 """
-# x = FindingInformationInXML('map2.osm')
+x = FindingInformationInXML('map1.osm')
 # print(x.score_tag_in_node())              # map1.osm
 # print(x.score_azs_on_node())              # map2.osm
 # print(x.score_azs_all())                  # map2.osm

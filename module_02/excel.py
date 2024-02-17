@@ -10,22 +10,24 @@ import openpyxl
 """
 Конвертация в читаемый формат.
 """
-def xls_converting(file_name):
-    workbook = Workbook(file_name)
+def xls_converting(path_file_name):
+    workbook = Workbook(path_file_name)
     workbook.save("work_file.xls")
 
 
 
 class TableProcessing:
     def __init__(self, file_name):
+        path_file_name = 'scr/' + file_name
 
         # Получаем данные из файла.
         try:
-            wb = xlrd.open_workbook(file_name)
+            wb = xlrd.open_workbook(path_file_name)
         except Exception:
             try:
-                xls_converting(file_name)
+                xls_converting(path_file_name)
                 wb = xlrd.open_workbook('work_file.xls')
+                os.remove('work_file.xls')
             except Exception:
                 raise Exception('Файл не найден')
         self.wb = wb
@@ -260,7 +262,7 @@ class TableProcessing:
 Функция для заполнения общей ведомости по имеющимся расчётным листкам.
 """
 def salary_calculation_using_tables(dir_name):
-
+    dir_name = 'scr/' + dir_name
     # - 1: Создаём пустой список и заполняем значениями "ФИО, Начислено".
     sp_out = []
 
@@ -285,8 +287,14 @@ def salary_calculation_using_tables(dir_name):
     # - 2: Сортируем спсиок по алфавиту.
     sp_out.sort()
 
-    # - 3: Записываем результат в блокнот.
-    with open('work_file.txt', 'w', encoding="UTF-8") as ouf:
+    # - 3: Создаём папку для результатов (если таковой нет).
+    try:
+        os.mkdir('result')
+    except FileExistsError:
+        ()
+
+    # - 4: Записываем результат в блокнот.
+    with open('result/work_file.txt', 'w', encoding="UTF-8") as ouf:
         for els in sp_out:
             for el in els:
                 ouf.write(el)
@@ -299,12 +307,12 @@ def salary_calculation_using_tables(dir_name):
 """
 Тестеры.
 """
-# x = TableProcessing('trekking3.xlsx')
+# x = TableProcessing('salaries.xlsx')
 
 # print(x.salary_calculation())          # salaries.xlsx
 # x.nutritious_food()                    # trekking1.xlsx
 # print(x.food_energic())                # trekking2.xlsx
 # x.food_energic_all_days()              # trekking3.xlsx
 
-# salary_calculation_using_tables_2('roga')
+# salary_calculation_using_tables('roga')
 

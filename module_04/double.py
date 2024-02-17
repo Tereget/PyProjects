@@ -8,7 +8,7 @@ import os
 
 
 try:
-    os.mkdir('results')
+    os.mkdir('result')
 except FileExistsError:
     ()
 
@@ -43,4 +43,4 @@ plt.plot(xs, cos_vals, color = 'red', linestyle = 'dashed',
          label = 'cos(x)')
 
 plt.legend(loc = 'lower left')
-fig.savefig('results/double.png')
+fig.savefig('result/double.png')

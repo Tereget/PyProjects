@@ -10,7 +10,7 @@ import os
 
 
 try:
-    os.mkdir('results')
+    os.mkdir('result')
 except FileExistsError:
     ()
 
@@ -46,4 +46,4 @@ plt.xticks(xs, data_names)
 fig.autofmt_xdate(rotation = 25)
 
 plt.legend(loc='upper right')
-fig.savefig('results/tee.png')
+fig.savefig('result/tee.png')
