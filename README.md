@@ -4,10 +4,10 @@
 - Модуль №3: Анализ файлов xml: подсчёт объектов на фрагменте карты (точечных, а также - общего количества).
 - Модуль №4: Анализ и обработка графиков: изменение разрешения/локации легенды.
 
-```python
-s = "Python syntax highlighting"
-Установка окружения:
-	pip install -r requirements.txt
+
+### Установка окружения:
+```commandline
+	pip install -r file_name
 ```
 
 
@@ -52,7 +52,7 @@ git push -u origin main
 - надо добавить 
 
 
-## TASK_02
+## TASK_02 [+]
 
 ### 1. Code	[+]
 - Сначала импорты всех модулей. потом импорты частей:
@@ -141,6 +141,6 @@ def salary_calculation(sh):
 ```
 
 
-### 2. README
+### 2. README [+]
 - Описание модулей сделать списком
 - Добавить блок кода с командой по установке окружения из requirements.txt: [MarkDownCodeBlock](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code-and-syntax-highlighting)
