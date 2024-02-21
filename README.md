@@ -6,7 +6,8 @@
 
 ```python
 s = "Python syntax highlighting"
-
+Установка окружения:
+	pip install -r requirements.txt
 ```
 
 
