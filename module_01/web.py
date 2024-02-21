@@ -1,6 +1,6 @@
+import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import re
 
 
 class WordCounterOnTheSite:
@@ -15,20 +15,22 @@ class WordCounterOnTheSite:
 
 
 
-    """
-    Количество всех вхождений слова, с учётом 
-    системной инфы (с учётом регистра).
-    """
     def total_score(self, word):
+        """
+        Количество всех вхождений слова, с учётом
+        системной инфы (с учётом регистра).
+        """
+
         return str(self.html.count(word)) + " вхождений."    # Ответ.
 
 
 
-    """
-    Количество вхождений слова, которые видно 
-    в браузере (с учётом регистра).
-    """
     def visible_on_the_site(self, word):
+        """
+        Количество вхождений слова, которые видно
+        в браузере (с учётом регистра).
+        """
+
         s = self.html                   # Короткий вид для переменной.
 
         s = s[s.index('<body'):]        # Сносим заголовок.
@@ -50,11 +52,12 @@ class WordCounterOnTheSite:
 
 
 
-    """
-    Нахождение максимально часто встречающихся строк между 
-    тегами <code> и </code> (вывод в алфавитном порядке).
-    """
     def frequent_line_in_code_tag(self):
+        """
+        Нахождение максимально часто встречающихся строк между
+        тегами <code> и </code> (вывод в алфавитном порядке).
+        """
+
         s = self.html                   # Короткий вид для переменной.
 
         # Находим все нужные строки по условию.
@@ -98,10 +101,10 @@ class WordCounterOnTheSite:
 
 
 
-    """
-    Суммирование значений ячеек таблицы формата html.
-    """
     def sum_of_cell_values(self):
+        """
+        Суммирование значений ячеек таблицы формата html.
+        """
 
         # Вытаскиваем ячейки с сайта.
         soup = BeautifulSoup(self.html, 'html.parser')
@@ -124,17 +127,3 @@ class WordCounterOnTheSite:
                 unk_str +=1
         return ('Сумма значений всех ячеек: ' + str(sum) + '\n'
                 + 'Количество ячеек, не являющихся числами: ' + str(unk_str))     # Ответ.
-
-
-
-
-
-"""
-Тестеры.
-"""
-# x = WordCounterOnTheSite('https://stepik.org/media/attachments/lesson/209717/1.html')
-
-# print(x.total_score('Python'))                  # https://stepik.org/media/attachments/lesson/209717/1.html
-# print(x.visible_on_the_site('Python'))          # https://ru.wikipedia.org/wiki/Python
-# print(x.frequent_line_in_code_tag())            # https://stepik.org/media/attachments/lesson/209719/2.html
-# print(x.sum_of_cell_values())                   # https://stepik.org/media/attachments/lesson/209723/4.html
