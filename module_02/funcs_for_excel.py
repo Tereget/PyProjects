@@ -1,3 +1,15 @@
+from asposecells.api import Workbook
+
+
+def xls_converting(path_file_name):
+    """
+    Конвертация в читаемый формат.
+    """
+
+    workbook = Workbook(path_file_name)
+    workbook.save("work_file.xls")
+
+
 def salary_calculation(sh):
     """
     Вычисление региона с самой высокой медианной з/п;
@@ -94,11 +106,8 @@ def nutritious_food(sh):
         for name in sp_el[1:]:
             sp_new.append(name)
 
-    # - 4: Печатаем список блюд.
-    with open('result/nutritious_food.txt', 'w', encoding="UTF-8") as ouf:
-        for food in sp_new:
-            ouf.write(food)
-            ouf.write('\n')
+    # - 4: Возвращаем список блюд.
+    return sp_new
 
 
 def food_energic(sh_1, sh_2):
@@ -212,7 +221,7 @@ def food_energic_all_days(sh_1, sh_2):
         d_out[h] = str_out
 
     # - 3: Ответ.
-    with open('result/food_energic_all_days.txt', 'w', encoding="UTF-8") as ouf:
-        for k in day_lst:
-            ouf.write(d_out[k])
-            ouf.write('\n')
+    day_lst_out = []
+    for k in day_lst:
+        day_lst_out.append(d_out[k])
+    return day_lst_out

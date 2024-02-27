@@ -1,5 +1,7 @@
 import re
+import urllib.error
 from urllib.request import urlopen
+
 from bs4 import BeautifulSoup
 
 
@@ -10,8 +12,8 @@ class WordCounterOnTheSite:
         self.url = url
         try:
             self.html = urlopen(str(url)).read().decode('utf-8')
-        except Exception:
-            raise Exception ('Сайт ' + url + ' - не найден.')
+        except urllib.error.HTTPError:
+            raise Exception('Сайт ' + url + ' - не найден.')
 
 
 
@@ -20,7 +22,6 @@ class WordCounterOnTheSite:
         Количество всех вхождений слова, с учётом
         системной инфы (с учётом регистра).
         """
-
         return str(self.html.count(word)) + " вхождений."    # Ответ.
 
 

@@ -1,5 +1,7 @@
 import re
+
 from mk_mt_text import MakeMT
+
 
 class MakeMTWithLink(MakeMT):
 

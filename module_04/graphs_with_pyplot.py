@@ -1,19 +1,10 @@
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import datetime as dt
-import csv
 import math
 import os
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 
 class VisualGraphs:
-    try:
-        os.mkdir('result')
-    except FileExistsError:
-        ()
-
-
 
     def original(self):
         """
@@ -47,7 +38,7 @@ class VisualGraphs:
                  label='cos(x)')
 
         plt.legend(loc='upper right')
-        fig.savefig('result/original.png')
+        return fig
 
 
 
@@ -83,7 +74,7 @@ class VisualGraphs:
                  label='cos(x)')
 
         plt.legend(loc='lower left')
-        fig.savefig('result/double.png')
+        return fig
 
 
 
@@ -120,4 +111,4 @@ class VisualGraphs:
         fig.autofmt_xdate(rotation = 25)
 
         plt.legend(loc='upper right')
-        fig.savefig('result/tee.png')
+        return fig
