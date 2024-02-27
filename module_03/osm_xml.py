@@ -2,14 +2,14 @@ import xmltodict
 
 
 class FindingInformationInXML:
-    def __init__(self, file_name, path_name='src/'):
+    def __init__(self, file_name, path_name='module_03/src/'):
 
         # Получаем данные из файла в текстовом виде.
         try:
             with open(path_name + file_name, 'r', encoding='utf8') as inf:
                 xml = inf.read()
             self.parsedxml = xmltodict.parse(xml)
-        except Exception:
+        except:
             raise Exception('Файл не найден')
 
 

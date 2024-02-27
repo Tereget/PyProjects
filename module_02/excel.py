@@ -1,60 +1,62 @@
+import os
+
 import xlrd
 import jpype
 jpype.startJVM()
-import os
 import pandas as pd
-import openpyxl
-import funcs_for_excel
-from asposecells.api import Workbook
 
-
-def xls_converting(path_file_name):
-    """
-    Конвертация в читаемый формат.
-    """
-
-    workbook = Workbook(path_file_name)
-    workbook.save("work_file.xls")
-
+from module_02 import funcs_for_excel
 
 
 class TableProcessing:
-    def __init__(self, file_name, path_name='src/'):
+    def __init__(self, file_name, path_name='module_02/src/'):
         path_file_name = path_name + file_name
 
         # Получаем данные из файла.
         try:
             wb = xlrd.open_workbook(path_file_name)
-        except Exception:
+        except:
             try:
-                xls_converting(path_file_name)
+                funcs_for_excel.xls_converting(path_file_name)
                 wb = xlrd.open_workbook('work_file.xls')
                 os.remove('work_file.xls')
-            except Exception:
+            except:
                 raise Exception('Файл не найден')
         self.wb = wb
 
 
     def salary_calculation(self):
-        sh = self.wb.sheet_by_index(0)
-        return funcs_for_excel.salary_calculation(sh)
+        try:
+            sh = self.wb.sheet_by_index(0)
+            return funcs_for_excel.salary_calculation(sh)
+        except:
+            return 'Некорректные данные в файле'
 
 
     def nutritious_food(self):
-        sh = self.wb.sheet_by_index(0)
-        return funcs_for_excel.nutritious_food(sh)
+        try:
+            sh = self.wb.sheet_by_index(0)
+            return funcs_for_excel.nutritious_food(sh)
+        except:
+            return 'Некорректные данные в файле'
 
 
     def food_energic(self):
-        sh_1 = self.wb.sheet_by_name('Справочник')
-        sh_2 = self.wb.sheet_by_name('Раскладка')
-        return funcs_for_excel.food_energic(sh_1, sh_2)
+        try:
+            sh_1 = self.wb.sheet_by_name('Справочник')
+            sh_2 = self.wb.sheet_by_name('Раскладка')
+            return funcs_for_excel.food_energic(sh_1, sh_2)
+        except:
+            return 'Некорректные данные в файле'
 
 
     def food_energic_all_days(self):
-        sh_1 = self.wb.sheet_by_name('Справочник')
-        sh_2 = self.wb.sheet_by_name('Раскладка')
-        return funcs_for_excel.food_energic_all_days(sh_1, sh_2)
+        try:
+            sh_1 = self.wb.sheet_by_name('Справочник')
+            sh_2 = self.wb.sheet_by_name('Раскладка')
+            return funcs_for_excel.food_energic_all_days(sh_1, sh_2)
+        except:
+            return 'Некорректные данные в файле'
 
 
 
@@ -64,11 +66,15 @@ def salary_calculation_using_tables(dir_name, path_name='src/'):
     """
 
     dir_name = path_name + dir_name
+    try:
+        file_list = os.listdir(dir_name)
+    except:
+        return 'Некорректный путь к файлам'
     # - 1: Создаём пустой список и заполняем значениями "ФИО, Начислено".
     sp_out = []
 
     # - 1.1: Читаем файлы с ЗП сотрудников.
-    for file in os.listdir(dir_name):
+    for file in file_list:
         filename = dir_name + '/' + file
         df = pd.read_excel(filename, engine='openpyxl')
 
@@ -88,15 +94,5 @@ def salary_calculation_using_tables(dir_name, path_name='src/'):
     # - 2: Сортируем спсиок по алфавиту.
     sp_out.sort()
 
-    # - 3: Создаём папку для результатов (если таковой нет).
-    try:
-        os.mkdir('result')
-    except FileExistsError:
-        ()
-
-    # - 4: Записываем результат в блокнот.
-    with open('result/sallaries_in_the_roga.txt', 'w', encoding="UTF-8") as ouf:
-        for els in sp_out:
-            for el in els:
-                ouf.write(el)
-            ouf.write('\n')
+    # - 3: Возвращаем ответ.
+    return sp_out

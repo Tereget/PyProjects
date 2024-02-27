@@ -1,12 +1,10 @@
 import os
 
+
 class MakeMT:
 
     def mt_text(self):
-        try:
-            os.mkdir('result')
-        except FileExistsError:
-            ()
+        os.makedirs('result', exist_ok=True)
 
         self.pathname = 'result/' + input() + '.html'
         with open(self.pathname, 'w', encoding='utf-8') as ouf:
