@@ -2,7 +2,7 @@ import xmltodict
 
 
 class FindingInformationInXML:
-    def __init__(self, file_name, path_name='module_03/src/'):
+    def __init__(self, file_name, path_name='module_03/cgi-bin/'):
 
         # Получаем данные из файла в текстовом виде.
         try:

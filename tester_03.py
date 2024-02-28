@@ -4,7 +4,7 @@ from module_03.osm_xml import FindingInformationInXML
 
 
 rdir = 'module_03/result/'
-sdir = 'module_03/src/'
+sdir = 'module_03/cgi-bin/'
 
 if __name__ == "__main__":
     print("Hello, World!")

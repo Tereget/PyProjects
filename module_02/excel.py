@@ -9,7 +9,7 @@ from module_02 import funcs_for_excel
 
 
 class TableProcessing:
-    def __init__(self, file_name, path_name='module_02/src/'):
+    def __init__(self, file_name, path_name='module_02/cgi-bin/'):
         path_file_name = path_name + file_name
 
         # Получаем данные из файла.
@@ -60,7 +60,7 @@ class TableProcessing:
 
 
 
-def salary_calculation_using_tables(dir_name, path_name='module_02/src/'):
+def salary_calculation_using_tables(dir_name, path_name='module_02/cgi-bin/'):
     """
     Функция для заполнения общей ведомости по имеющимся расчётным листкам.
     """

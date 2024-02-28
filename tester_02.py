@@ -3,7 +3,7 @@ import os
 from module_02 import excel
 
 rdir = 'module_02/result/'
-sdir = 'module_02/src/'
+sdir = 'module_02/cgi-bin/'
 
 if __name__ == "__main__":
     print("Hello, World!")
