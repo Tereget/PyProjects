@@ -60,7 +60,7 @@ class TableProcessing:
 
 
 
-def salary_calculation_using_tables(dir_name, path_name='src/'):
+def salary_calculation_using_tables(dir_name, path_name='module_02/src/'):
     """
     Функция для заполнения общей ведомости по имеющимся расчётным листкам.
     """

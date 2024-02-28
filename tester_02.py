@@ -47,7 +47,7 @@ if __name__ == "__main__":
                 ouf.write('\n')
 
     # roga (in def)
-    res = excel.salary_calculation_using_tables('roga')
+    res = excel.salary_calculation_using_tables('roga', sdir)
     rfile = rdir + 'sallaries_in_the_roga.txt'
     with open(rfile, 'w') as ouf:
         if res == 'Некорректный путь к файлам':

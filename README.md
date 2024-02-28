@@ -9,6 +9,7 @@
 
 #### Установка окружения:
 ```commandline
+	"Python version: 3.9"
 	pip3 install virtualenv
 	mkdir myenv
 	cd myenv
