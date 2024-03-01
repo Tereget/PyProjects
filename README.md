@@ -189,3 +189,67 @@ def salary_calculation(sh):
 - добавить заголовок "Тестирование". В этом разделе для каждого модуля записать команду запуска тестовых файлов: `python <название_файла>.py`
 
 
+
+## TASK_04
+
+### 1. README 
+
+- Установка окружения:
+	- папка создается, если еще нет проекта. У нас уже есть проект, поэтому строчки mkdir и cd надо убрать.
+	- название окружения надо поменять: venv можно спутать с библиотекой.
+	- надо подписать, что это вариант создания окружения с помощью virtualenv
+	- добавить аналогичную инструкцию по созданию окружения, но с использованием venv вместо virtualenv
+	- в отличии от conda, venv и virtualenv создают окружение на базе текущего интерпретатора. Ты здесь подразумеваешь, что у человека стоит python 3.9. Нужно перед установкой окружения добавить команду по установке python3.9
+
+
+### 2. Code
+
+- общие замечания:
+	- используй f-string вместо str1 + str2 + str3... [docs](https://docs.python.org/3/tutorial/inputoutput.html)
+	- надо выебнуться и сделать код кроссплатформенным. На винде ебучий слеш в путях пишется в обратную сторону, код поднимет ошибку. Используй это: [StackOverflow](https://stackoverflow.com/questions/10918682/platform-independent-path-concatenation-using)
+	- `if len(numbers) > 0:` - достаточно писать `if numbers:`
+
+- module_01:
+	- tester:
+		- 'https://stepik.org/media/attachments/lesson/209723/4.html' в глобальный аргумент	
+		- 'Python' в глобальный аргумент
+		- что означают закомментированные веб-сайты ?
+	- web:
+		- [1](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L72-L78) используй defaultdict из collections 
+		- [2](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L80-L89) я не понимаю, что здесь происходит, но мне кажется, что ты пытаешься взять те ключи словаря, значение которых равняется максимуму из всех значений словаря. Ты можешь отсортировать словарь по значению ключа [StackOverflow](https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value)
+		- [3](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L98-L100) используй `" ".join(list)`
+		- [4](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L125-L129) тебе нужен `isnumeric` [StackOverflow](https://stackoverflow.com/questions/44891070/whats-the-difference-between-str-isdigit-isnumeric-and-isdecimal-in-pyth)
+		- [5](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L29) Логичнее в ините в качестве второго атрибута сохранить очищенную версию html. А внутри этого метода просто дергать count у этого атрибута.
+		- Давай не будем спамить результирующие файлы. Применим все методы, соберем результат в переменные. А потом все это сохраним в один файл-отчет, где будет расписано, какая функция выполнялась, что она делала, и вхождение какого слова она искала.
+
+- module_02:
+	- tester:
+		- 'trekking3.xlsx' в глобальный аргумент
+		- импорты отдельно: salary_calculation_using_tables и TableProcessing
+		- `if res == 'Некорректные данные в файле':` - пусть просто будет res = False, если там некорректно что-то 
+	- excel:
+		- откуда взялись файлы src? Если это был архив, надо добавить этап разархивирования в код. Гугли, как это делается в ПИТУХОНЕ.
+		- нет никакого смысла подавать раздельно путь до папки и название файла, а потом склеивать (Россию). Подавай сразу весь путь до файла.
+		- try except внутри try except. Совсем ебнулся. Убирай все это. Если сама функция бросает ошибку, добавь в except конкретное исключение.
+		- [1](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_02/excel.py#L70) добавить условие на расширение файлов
+		- [2](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_02/excel.py#L72) пути сначала проверяются с помощью os.path.isdir, os.path.ispath, чтобы не использовать try except. По такой же логике можно какой-нибудь функцией сначала проверять корректность веб-адреса, а потом подавать его в парсеры. Погугли, что для этого использовать. 
+		- [3](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_02/excel.py#L82-L89) кажется, что в файлах есть некий паттерн и можно сразу обращаться к номеру ячейки ?
+		- [4](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_02/excel.py#L92) добавляй имя и зп в два разных листа. После цикла создай датафрейм: `df = pd.DataFrame({"name": names, "salary": salaries}`. Дальше, это можно отсортировать и сохранить как сsv или excel. Погугли как.
+	- funcs_for_excel:
+		- соберусь с силами и проедусь катком в следующих коммитах.
+
+- module_03:
+	- tester:
+		- 'map2.osm' - в глобальный аргумент
+		- собираем вывод в одни файл с пояснением, что это за цифры. Как и в модуле 1
+	- osm_xml:
+		- [1](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_03/osm_xml.py#L42) - `isinstance`
+		- [2](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_03/osm_xml.py#L42-L44) - ??????
+		- [3](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_03/osm_xml.py#L60-L61) - если это словарь, может сразу перебирать ключ и значение ?
+
+- module_04:
+	- graphs_with_pyplot.py:
+		- убрать класс, он тут вообще не нужен
+		- назвать функции так, чтоб они лучше отражали суть: sinus, sinus_shifted, osm_points. Как-то так
+
+
