@@ -1,0 +1,15 @@
+Total score:
+0 вхождений.
+
+
+Visible on the site:
+0 вхождений.
+
+
+Frequent line in code tag:
+Строки с тегами "code" не найдены.
+
+
+Sum of cell values:
+Сумма значений всех ячеек: 29536
+Количество ячеек, не являющихся числами: 0

@@ -3,7 +3,7 @@ import os
 from module_04.graphs_with_pyplot import VisualGraphs
 
 
-rdir = 'module_04/result/'
+rdir = os.path.join('module_04/result/')
 
 if __name__ == "__main__":
     print("Hello, World!")
@@ -13,13 +13,13 @@ if __name__ == "__main__":
     x = VisualGraphs()
 
     res = x.original()
-    rfile = rdir + 'original.png'
+    rfile = f'{rdir} original.png'
     res.savefig(rfile)
 
     res = x.double()
-    rfile = rdir + 'double.png'
+    rfile = f'{rdir} double.png'
     res.savefig(rfile)
 
     res = x.tee()
-    rfile = rdir + 'tee.png'
+    rfile = f'{rdir} tee.png'
     res.savefig(rfile)

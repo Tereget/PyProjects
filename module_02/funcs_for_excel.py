@@ -1,4 +1,5 @@
 from asposecells.api import Workbook
+from collections import defaultdict
 
 
 def xls_converting(path_file_name):
@@ -29,7 +30,7 @@ def salary_calculation(sh):
     # - 1.2: Вносим в словарь с медианой названия регионов; заполняем значения обоих словарей.
     for j in vals[1:]:
         numbers = j[1:]
-        if len(numbers) > 0:
+        if numbers:
             try:
                 z = 0
                 for key, value in d_prof.items():
@@ -63,8 +64,8 @@ def salary_calculation(sh):
             prof_output = key
             p = value
         elif value == p:
-            prof_output += ', ' + key
-    out = region_output + ' ' + prof_output
+            prof_output += f', {key}'
+    out = f'{region_output} {prof_output}'
 
     # - 4: Получаем ответ.
     return out
@@ -77,7 +78,7 @@ def nutritious_food(sh):
     """
 
     # - 1: Вводим переменные (словари, списки, данные из файла).
-    d = {}
+    d = defaultdict(str)
     sp = []
     sp_new = []
     vals = [sh.row_values(rownum) for rownum in range(sh.nrows)]
@@ -86,16 +87,13 @@ def nutritious_food(sh):
     for j in vals:
         if len(j) > 1:
             try:
-                if float(j[1]) not in d:
-                    d[float(j[1])] = j[0]
-                else:
-                    d[float(j[1])] += '*' + j[0]
+                d[float(j[1])] += f'{j[0]}*'
             except ValueError:
                 continue
 
     # - 2: Переносим значения в список и сортируем по коллориям.
     for key, value in d.items():
-        sp.append(str(key) + '*' + value)
+        sp.append(f'{str(key)}*{value}')
     sp.sort()
     sp.reverse()
 
@@ -103,7 +101,7 @@ def nutritious_food(sh):
     for el in sp:
         sp_el = el.split('*')
         sp_el.sort()
-        for name in sp_el[1:]:
+        for name in sp_el[2:]:
             sp_new.append(name)
 
     # - 4: Возвращаем список блюд.
@@ -138,8 +136,7 @@ def food_energic(sh_1, sh_2):
                     for score in j[1:5]:
                         if score == '':
                             score = 0
-                        d[j[0]] += '/'
-                        d[j[0]] += str(float(score) / 100)
+                        d[j[0]] += f'/{str(float(score) / 100)}'
                 except ValueError:
                     continue
 
@@ -154,7 +151,7 @@ def food_energic(sh_1, sh_2):
             i += 1
     str_out = ''
     for result in sp_out:
-        str_out += str(int(result)) + ' '
+        str_out += f'{str(int(result))} '
 
     # - 3: Ответ.
     return str_out
@@ -200,8 +197,7 @@ def food_energic_all_days(sh_1, sh_2):
                         for score in j[1:5]:
                             if score == '':
                                 score = 0
-                            d[j[0]] += '/'
-                            d[j[0]] += str(float(score) / 100)
+                            d[j[0]] += f'/{str(float(score) / 100)}'
                     except ValueError:
                         continue
 
@@ -216,7 +212,7 @@ def food_energic_all_days(sh_1, sh_2):
                 i += 1
         str_out = ''
         for result in sp_out:
-            str_out += str(int(result)) + ' '
+            str_out += f'{str(int(result))} '
         str_out = str_out.rstrip(' ')
         d_out[h] = str_out
 

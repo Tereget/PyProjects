@@ -1,6 +1,7 @@
 import re
 import urllib.error
 from urllib.request import urlopen
+from collections import defaultdict
 
 from bs4 import BeautifulSoup
 
@@ -13,7 +14,7 @@ class WordCounterOnTheSite:
         try:
             self.html = urlopen(str(url)).read().decode('utf-8')
         except urllib.error.HTTPError:
-            raise Exception('Сайт ' + url + ' - не найден.')
+            raise Exception(f'Сайт {url} - не найден.')
 
 
 
@@ -22,7 +23,7 @@ class WordCounterOnTheSite:
         Количество всех вхождений слова, с учётом
         системной инфы (с учётом регистра).
         """
-        return str(self.html.count(word)) + " вхождений."    # Ответ.
+        return f'{str(self.html.count(word))} вхождений.'    # Ответ.
 
 
 
@@ -49,7 +50,7 @@ class WordCounterOnTheSite:
             if el in s:
                 s = s.replace(el, '*')
 
-        return str(s.count(word)) + " вхождений."       # Ответ.
+        return f'{str(s.count(word))} вхождений.'       # Ответ.
 
 
 
@@ -70,23 +71,16 @@ class WordCounterOnTheSite:
             return 'Строки с тегами "code" не найдены.'
 
         # Считаем количество повторений для каждой строки.
-        d = {}
+        d = defaultdict(int)
         for code in z:
-            if code not in d:
-                d[code] = 1
-            else:
-                d[code] += 1
+            d[code] += 1
 
         # Вытаскиваем максимально часто встречающиеся строки.
-        i = 0
-        for key, value in d.items():
-            if value > i:
-                i = value
-                j = []
-                j.append(key)
-            if value == i:
-                if key not in j:
-                    j.append(key)
+        max_value = max(d.values())
+        d = {k: v for k, v in d.items() if v == max_value}
+        j = []
+        for key in d.keys():
+            j.append(key)
 
         # Убираем теги и сортируем список.
         new_j = []
@@ -95,9 +89,7 @@ class WordCounterOnTheSite:
             designs = designs.removesuffix('</code>')
             new_j.append(designs)
         new_j.sort()
-        str_out = ''
-        for word in new_j:
-            str_out += word + ' '
+        str_out = ' '.join(new_j)
         return str_out                  # Ответ.
 
 
@@ -122,9 +114,8 @@ class WordCounterOnTheSite:
             cell = str(cell.string)
             cell = cell.removeprefix(' ')
             cell = cell.removesuffix(' ')
-            try:
+            if cell.isnumeric():
                 sum += int(cell)
-            except ValueError:
-                unk_str +=1
-        return ('Сумма значений всех ячеек: ' + str(sum) + '\n'
-                + 'Количество ячеек, не являющихся числами: ' + str(unk_str))     # Ответ.
+            else:
+                unk_str += 1
+        return (f'Сумма значений всех ячеек: {str(sum)}\nКоличество ячеек, не являющихся числами: {str(unk_str)}')     # Ответ.

@@ -217,17 +217,17 @@ def salary_calculation(sh):
 
 ### 2. Code
 
-- общие замечания:
+- общие замечания: [+]
 	- используй f-string вместо str1 + str2 + str3... [docs](https://docs.python.org/3/tutorial/inputoutput.html)
 	- надо выебнуться и сделать код кроссплатформенным. На винде ебучий слеш в путях пишется в обратную сторону, код поднимет ошибку. Используй это: [StackOverflow](https://stackoverflow.com/questions/10918682/platform-independent-path-concatenation-using)
 	- `if len(numbers) > 0:` - достаточно писать `if numbers:`
 
-- module_01:
-	- tester:
+- module_01: [+]
+	- tester: [+]
 		- 'https://stepik.org/media/attachments/lesson/209723/4.html' в глобальный аргумент	
 		- 'Python' в глобальный аргумент
 		- что означают закомментированные веб-сайты ?
-	- web:
+	- web: [+]
 		- [1](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L72-L78) используй defaultdict из collections 
 		- [2](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L80-L89) я не понимаю, что здесь происходит, но мне кажется, что ты пытаешься взять те ключи словаря, значение которых равняется максимуму из всех значений словаря. Ты можешь отсортировать словарь по значению ключа [StackOverflow](https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value)
 		- [3](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_01/web.py#L98-L100) используй `" ".join(list)`
@@ -236,7 +236,7 @@ def salary_calculation(sh):
 		- Давай не будем спамить результирующие файлы. Применим все методы, соберем результат в переменные. А потом все это сохраним в один файл-отчет, где будет расписано, какая функция выполнялась, что она делала, и вхождение какого слова она искала.
 
 - module_02:
-	- tester:
+	- tester: [+]
 		- 'trekking3.xlsx' в глобальный аргумент
 		- импорты отдельно: salary_calculation_using_tables и TableProcessing
 		- `if res == 'Некорректные данные в файле':` - пусть просто будет res = False, если там некорректно что-то 

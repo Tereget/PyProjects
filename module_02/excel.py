@@ -9,8 +9,8 @@ from module_02 import funcs_for_excel
 
 
 class TableProcessing:
-    def __init__(self, file_name, path_name='module_02/cgi-bin/'):
-        path_file_name = path_name + file_name
+    def __init__(self, file_name, path_name='module_02/src/'):
+        path_file_name = os.path.join(f'{path_name}{file_name}')
 
         # Получаем данные из файла.
         try:
@@ -60,12 +60,12 @@ class TableProcessing:
 
 
 
-def salary_calculation_using_tables(dir_name, path_name='module_02/cgi-bin/'):
+def salary_calculation_using_tables(dir_name, path_name='module_02/src/'):
     """
     Функция для заполнения общей ведомости по имеющимся расчётным листкам.
     """
 
-    dir_name = path_name + dir_name
+    dir_name = os.path.join(f'{path_name}{dir_name}')
     try:
         file_list = os.listdir(dir_name)
     except:
@@ -75,7 +75,7 @@ def salary_calculation_using_tables(dir_name, path_name='module_02/cgi-bin/'):
 
     # - 1.1: Читаем файлы с ЗП сотрудников.
     for file in file_list:
-        filename = dir_name + '/' + file
+        filename = os.path.join(f'{dir_name}/{file}')
         df = pd.read_excel(filename, engine='openpyxl')
 
         # - 1.2: Достаём нужные значения.
@@ -89,7 +89,7 @@ def salary_calculation_using_tables(dir_name, path_name='module_02/cgi-bin/'):
                 i += 1
 
         # - 1.3: Добавляем значения в список.
-        sp_out.append((name, ' ', str(int(money))))
+        sp_out.append(f'{name} {str(int(money))}')
 
     # - 2: Сортируем спсиок по алфавиту.
     sp_out.sort()

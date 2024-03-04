@@ -1,59 +1,68 @@
 import os
 
-from module_02 import excel
+from module_02.excel import TableProcessing
+from module_02.excel import salary_calculation_using_tables
 
-rdir = 'module_02/result/'
-sdir = 'module_02/cgi-bin/'
+
+rdir = os.path.join('module_02/result/')
+sdir = os.path.join('module_02/src/')
+file_01 = 'salaries.xlsx'
+file_02 = 'trekking1.xlsx'
+file_03 = 'trekking2.xlsx'
+file_04 = 'trekking3.xlsx'
+dir_01 = 'roga'
 
 if __name__ == "__main__":
     print("Hello, World!")
 
     os.makedirs(rdir, exist_ok=True)
 
-    x = excel.TableProcessing('trekking3.xlsx', sdir)
+    x = TableProcessing(file_04, sdir)
 
-    # salaries.xlsx (in class)
-    res = x.salary_calculation()
-    rfile = rdir + 'salary_calculation.txt'
-    with open(rfile, 'w') as ouf:
-        ouf.write(res)
+    res_01 = x.salary_calculation()
+    res_02 = x.nutritious_food()
+    res_03 = x.food_energic()
+    res_04 = x.food_energic_all_days()
+    res_05 = salary_calculation_using_tables(dir_01, sdir)
 
-    # trekking1.xlsx (in class)
-    res = x.nutritious_food()
-    rfile = rdir + 'nutritious_food.txt'
-    with open(rfile, 'w') as ouf:
-        if res == 'Некорректные данные в файле':
-            ouf.write(res)
+    with open(f'{rdir}results.txt', 'w') as ouf:
+
+        ouf.write(f'Salary calculation:\n')
+        if type(res_01) == str:
+            ouf.write(f'{res_01}')
         else:
-            for food in res:
-                ouf.write(food)
-                ouf.write('\n')
+            for value in res_01:
+                ouf.write(f'{value}\n')
+        ouf.write('\n\n\n')
 
-    # trekking2.xlsx (in class)
-    res = x.food_energic()
-    rfile = rdir + 'food_energic.txt'
-    with open(rfile, 'w') as ouf:
-        ouf.write(res)
-
-    # trekking3.xlsx (in class)
-    res = x.food_energic_all_days()
-    rfile = rdir + 'food_energic_all_days.txt'
-    with open(rfile, 'w') as ouf:
-        if res == 'Некорректные данные в файле':
-            ouf.write(res)
+        ouf.write(f'Nutricious food:\n')
+        if type(res_02) == str:
+            ouf.write(f'{res_02}')
         else:
-            for k in res:
-                ouf.write(k)
-                ouf.write('\n')
+            for value in res_02:
+                ouf.write(f'{value}\n')
+        ouf.write('\n\n\n')
 
-    # roga (in def)
-    res = excel.salary_calculation_using_tables('roga', sdir)
-    rfile = rdir + 'sallaries_in_the_roga.txt'
-    with open(rfile, 'w') as ouf:
-        if res == 'Некорректный путь к файлам':
-            ouf.write(res)
+        ouf.write(f'Food energic:\n')
+        if type(res_03) == str:
+            ouf.write(f'{res_03}')
         else:
-            for els in res:
-                for el in els:
-                    ouf.write(el)
-                ouf.write('\n')
+            for value in res_03:
+                ouf.write(f'{value}\n')
+        ouf.write('\n\n\n')
+
+        ouf.write(f'Food energic all days:\n')
+        if type(res_04) == str:
+            ouf.write(f'{res_04}')
+        else:
+            for value in res_04:
+                ouf.write(f'{value}\n')
+        ouf.write('\n\n\n')
+
+        ouf.write(f'Salary calculation using tables:\n')
+        if type(res_05) == str:
+            ouf.write(f'{res_05}')
+        else:
+            for value in res_05:
+                ouf.write(f'{value}\n')
+        ouf.write('\n\n\n')

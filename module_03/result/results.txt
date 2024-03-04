@@ -1,0 +1,10 @@
+Score tag in node:
+884 24305
+
+
+Score azs on node:
+15
+
+
+Score azs all:
+27

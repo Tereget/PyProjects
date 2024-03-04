@@ -2,11 +2,11 @@ import xmltodict
 
 
 class FindingInformationInXML:
-    def __init__(self, file_name, path_name='module_03/cgi-bin/'):
+    def __init__(self, file_name, path_name='module_03/src/'):
 
         # Получаем данные из файла в текстовом виде.
         try:
-            with open(path_name + file_name, 'r', encoding='utf8') as inf:
+            with open(f'{path_name}{file_name}', 'r', encoding='utf8') as inf:
                 xml = inf.read()
             self.parsedxml = xmltodict.parse(xml)
         except:
@@ -26,7 +26,7 @@ class FindingInformationInXML:
                 score_plus += 1
             else:
                 score_minus += 1
-        return str(score_plus) + ' ' + str(score_minus)
+        return f'{str(score_plus)} {str(score_minus)}'
 
 
 
