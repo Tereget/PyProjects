@@ -7,24 +7,37 @@
 - Модуль №4: Анализ и обработка графиков: изменение разрешения/локации легенды.
 
 
-#### Установка окружения:
+#### Установка интерпретатора (python v.3.9):
 ```commandline
-	"Python version: 3.9"
-	pip3 install virtualenv
-	mkdir myenv
-	cd myenv
-	virtualenv venv
-	source venv/bin/activate
-	pip3 install -r ../requirements.txt
+	sudo apt update
+	sudo apt install software-properties-common
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt install python3.9
+```
+
+#### Установка окружения (python v.3.9):
+```commandline
+
+C помощью vrtualenv:
+	pip3.9 install virtualenv
+	virtualenv kitty
+	source kitty/bin/activate
+	pip3.9 install -r ./requirements.txt
+	
+C помощью venv:
+	sudo apt install python3-venv
+	python3.9 -m venv kitty
+	source kitty/bin/activate
+	pip3.9 install -r ./requirements.txt
 ```
 
 
 #### Тестирование:
 ```commandline
-	python3 tester_01.py
-	python3 tester_02.py
-	python3 tester_03.py
-	python3 tester_04.py
+	python3.9 tester_01.py
+	python3.9 tester_02.py
+	python3.9 tester_03.py
+	python3.9 tester_04.py
 ```
 
 
@@ -192,7 +205,7 @@ def salary_calculation(sh):
 
 ## TASK_04
 
-### 1. README 
+### 1. README [+]
 
 - Установка окружения:
 	- папка создается, если еще нет проекта. У нас уже есть проект, поэтому строчки mkdir и cd надо убрать.
