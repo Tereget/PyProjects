@@ -215,7 +215,7 @@ def salary_calculation(sh):
 	- в отличии от conda, venv и virtualenv создают окружение на базе текущего интерпретатора. Ты здесь подразумеваешь, что у человека стоит python 3.9. Нужно перед установкой окружения добавить команду по установке python3.9
 
 
-### 2. Code
+### 2. Code [+]
 
 - общие замечания: [+]
 	- используй f-string вместо str1 + str2 + str3... [docs](https://docs.python.org/3/tutorial/inputoutput.html)
@@ -251,11 +251,11 @@ def salary_calculation(sh):
 	- funcs_for_excel:
 		- соберусь с силами и проедусь катком в следующих коммитах.
 
-- module_03:
+- module_03: [+]
 	- tester: [+]
 		- 'map2.osm' - в глобальный аргумент
 		- собираем вывод в одни файл с пояснением, что это за цифры. Как и в модуле 1
-	- osm_xml:
+	- osm_xml: [+] (2 пункт: так должно быть? 3 пункт: я сделал даже лучше)
 		- [1](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_03/osm_xml.py#L42) - `isinstance`
 		- [2](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_03/osm_xml.py#L42-L44) - ??????
 		- [3](https://github.com/Tereget/PyProjects/blob/608c8b52b37f6864247cfeb60167f8573365a04b/module_03/osm_xml.py#L60-L61) - если это словарь, может сразу перебирать ключ и значение ?

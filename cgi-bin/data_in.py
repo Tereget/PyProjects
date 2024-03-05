@@ -2,8 +2,6 @@
 import cgi
 
 
-rdir = 'result/'
-
 def ohash(s):
     ans = 0
     for c in s:
@@ -26,5 +24,3 @@ print("<h1>" + str(ohash(text)) + "</h1>")
 print("""</body>
         </html>""")
 
-with open(rdir+'num_by_word.txt', 'w') as ouf:
-    ouf.write(str(ohash(text)))

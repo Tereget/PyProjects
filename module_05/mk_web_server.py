@@ -7,4 +7,3 @@ def run():
     httpd = HTTPServer(server_address, CGIHTTPRequestHandler)
     httpd.serve_forever()
 
-run()

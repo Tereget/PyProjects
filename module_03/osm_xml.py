@@ -30,24 +30,23 @@ class FindingInformationInXML:
 
 
 
-    def score_azs_on_node(self):
+    def score_azs_on_node(self, tag='node'):
         """
         Количество заправок (точечные объекты).
         """
 
         score_azs = 0
-        for node in self.parsedxml['osm']['node']:
+        for node in self.parsedxml['osm'][tag]:
             if 'tag' in node:
-                score = 0
-                print(node['tag'])
-                if type(node['tag']) == dict:
-                    node['tag'] = [node['tag']]
-                for tag in node['tag']:
-                    try:
-                        if '@k' in tag and tag['@k'] == 'amenity' and tag['@v'] == 'fuel':
+                nt = node['tag']
+                if isinstance(nt, dict):
+                    if nt['@k'] == 'amenity' and nt['@v'] == 'fuel':
+                        score_azs += 1
+                else:
+                    for tag in nt:
+                        if tag['@k'] == 'amenity' and tag['@v'] == 'fuel':
                             score_azs += 1
-                    except TypeError:
-                        continue
+
         return score_azs
 
 
@@ -59,16 +58,7 @@ class FindingInformationInXML:
 
         score_azs = 0
         for point in self.parsedxml['osm']:
-            for azs in self.parsedxml['osm'][point]:
-                if 'tag' in azs:
-                    score = 0
-                    if type(azs['tag']) == dict:
-                        azs['tag'] = [azs['tag']]
-                    for tag in azs['tag']:
-                        try:
-                            if '@k' in tag and tag['@k'] == 'amenity' and tag['@v'] == 'fuel':
-                                score_azs += 1
-                        except TypeError:
-                            continue
+            score_azs += self.score_azs_on_node(point)
+
         return score_azs
 

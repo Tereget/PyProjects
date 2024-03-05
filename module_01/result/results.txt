@@ -11,4 +11,5 @@ else except finally
 
 
 Sum of cell values:
-Сайт https://stepik.org/media/attachments/lesson/209723/4.htl - не найден.
+Сумма значений всех ячеек: 29536
+Количество ячеек, не являющихся числами: 0
