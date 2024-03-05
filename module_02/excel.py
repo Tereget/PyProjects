@@ -1,4 +1,5 @@
 import os
+import re
 
 import xlrd
 import jpype
@@ -9,20 +10,16 @@ from module_02 import funcs_for_excel
 
 
 class TableProcessing:
-    def __init__(self, file_name, path_name='module_02/src/'):
-        path_file_name = os.path.join(f'{path_name}{file_name}')
-
+    def __init__(self, path_file_name):
         # Получаем данные из файла.
-        try:
-            wb = xlrd.open_workbook(path_file_name)
-        except:
+        if os.path.isfile(path_file_name):
             try:
+                wb = xlrd.open_workbook(path_file_name)
+            except xlrd.biffh.XLRDError:
                 funcs_for_excel.xls_converting(path_file_name)
                 wb = xlrd.open_workbook('work_file.xls')
                 os.remove('work_file.xls')
-            except:
-                raise Exception('Файл не найден')
-        self.wb = wb
+            self.wb = wb
 
 
     def salary_calculation(self):
@@ -30,7 +27,7 @@ class TableProcessing:
             sh = self.wb.sheet_by_index(0)
             return funcs_for_excel.salary_calculation(sh)
         except:
-            return 'Некорректные данные в файле'
+            return 'Некорректные данные в файле, либо файл отсутствует'
 
 
     def nutritious_food(self):
@@ -38,7 +35,7 @@ class TableProcessing:
             sh = self.wb.sheet_by_index(0)
             return funcs_for_excel.nutritious_food(sh)
         except:
-            return 'Некорректные данные в файле'
+            return 'Некорректные данные в файле, либо файл отсутствует'
 
 
     def food_energic(self):
@@ -47,7 +44,7 @@ class TableProcessing:
             sh_2 = self.wb.sheet_by_name('Раскладка')
             return funcs_for_excel.food_energic(sh_1, sh_2)
         except:
-            return 'Некорректные данные в файле'
+            return 'Некорректные данные в файле, либо файл отсутствует'
 
 
     def food_energic_all_days(self):
@@ -56,43 +53,44 @@ class TableProcessing:
             sh_2 = self.wb.sheet_by_name('Раскладка')
             return funcs_for_excel.food_energic_all_days(sh_1, sh_2)
         except:
-            return 'Некорректные данные в файле'
+            return 'Некорректные данные в файле, либо файл отсутствует'
 
 
 
-def salary_calculation_using_tables(dir_name, path_name='module_02/src/'):
+def salary_calculation_using_tables(dir_name):
     """
     Функция для заполнения общей ведомости по имеющимся расчётным листкам.
     """
 
-    dir_name = os.path.join(f'{path_name}{dir_name}')
-    try:
-        file_list = os.listdir(dir_name)
-    except:
+    file_list = []
+    y = r'.xl.{0,2}$'
+    if os.path.isdir(dir_name):
+        for file in os.listdir(dir_name):
+            if re.search(y, file):
+                file_list.append(file)
+    else:
         return 'Некорректный путь к файлам'
-    # - 1: Создаём пустой список и заполняем значениями "ФИО, Начислено".
-    sp_out = []
 
-    # - 1.1: Читаем файлы с ЗП сотрудников.
+    # - 1: Создаём пустой список и заполняем значениями "ФИО, Начислено".
+    sp_name = []
+    sp_money = []
+
+    # - 2: Читаем файлы с ЗП сотрудников.
     for file in file_list:
         filename = os.path.join(f'{dir_name}/{file}')
         df = pd.read_excel(filename, engine='openpyxl')
 
-        # - 1.2: Достаём нужные значения.
-        for value in df.values:
-            i = 0
-            while i < len(value):
-                if value[i] == 'ФИО':
-                    name = value[i+1]
-                elif value[i] == 'Начислено':
-                    money = value[i+1]
-                i += 1
+        # - 2.1: Достаём нужные значения.
+        name = df.values[0][1]
+        money = df.values[0][3]
 
-        # - 1.3: Добавляем значения в список.
-        sp_out.append(f'{name} {str(int(money))}')
+        # - 2.2: Добавляем значения в списки.
+        sp_name.append(name)
+        sp_money.append(str(int(money)))
 
-    # - 2: Сортируем спсиок по алфавиту.
-    sp_out.sort()
+    # - 3: Создаём и сортируем датафрейм.
+    df = pd.DataFrame({"ФИО": sp_name, "Начислено": sp_money})
+    df = df.sort_values(by='name')
 
-    # - 3: Возвращаем ответ.
-    return sp_out
+    # - 4: Возвращаем ответ.
+    return df

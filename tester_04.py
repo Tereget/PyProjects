@@ -1,6 +1,8 @@
 import os
 
-from module_04.graphs_with_pyplot import VisualGraphs
+from module_04.graphs_with_pyplot import sinus
+from module_04.graphs_with_pyplot import sinus_shifted
+from module_04.graphs_with_pyplot import osm_points
 
 
 rdir = os.path.join('module_04/result/')
@@ -10,16 +12,14 @@ if __name__ == "__main__":
 
     os.makedirs(rdir, exist_ok=True)
 
-    x = VisualGraphs()
-
-    res = x.original()
-    rfile = f'{rdir} original.png'
+    res = sinus()
+    rfile = f'{rdir}sinus.png'
     res.savefig(rfile)
 
-    res = x.double()
-    rfile = f'{rdir} double.png'
+    res = sinus_shifted()
+    rfile = f'{rdir}sinus_shifted.png'
     res.savefig(rfile)
 
-    res = x.tee()
-    rfile = f'{rdir} tee.png'
+    res = osm_points()
+    rfile = f'{rdir}osm_points.png'
     res.savefig(rfile)

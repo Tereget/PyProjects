@@ -3,19 +3,40 @@ import urllib.error
 from urllib.request import urlopen
 from collections import defaultdict
 
+import requests
 from bs4 import BeautifulSoup
+
+
+def html_cleaning(html):
+
+    s = html[html.index('<body'):]  # Сносим заголовок.
+
+    y = r'<script'  # Сносим скрипты.
+    z = re.findall(y, s)
+    for script in z:
+        s1 = s.index('<script')
+        s2 = s.index('/script>') + 8
+        s = s[:s1] + s[s2:]
+
+    Python_re = r'(\<[^\<\>]*\>)'  # Сносим остальную системную инфу.
+    z = re.findall(Python_re, s)
+    for el in z:
+        if el in s:
+            s = s.replace(el, '*')
+
+    return s                       # Очищенная версия.
+
 
 
 class WordCounterOnTheSite:
     def __init__(self, url):
-
         # Получаем html-код страницы.
-        self.url = url
-        try:
-            self.html = urlopen(str(url)).read().decode('utf-8')
-        except urllib.error.HTTPError:
-            raise Exception(f'Сайт {url} - не найден.')
-
+        if requests.get(url).status_code == 404:
+            self.error = f'Сайт: {url} - не найден.'
+        else:
+            self.error = None
+            self.html = urlopen(str(url), ).read().decode('utf-8')
+            self.clear_html = html_cleaning(self.html)
 
 
     def total_score(self, word):
@@ -23,7 +44,9 @@ class WordCounterOnTheSite:
         Количество всех вхождений слова, с учётом
         системной инфы (с учётом регистра).
         """
-        return f'{str(self.html.count(word))} вхождений.'    # Ответ.
+        if self.error:
+            return self.error
+        return f'Количество вхождений: {str(self.html.count(word))}'    # Ответ.
 
 
 
@@ -32,25 +55,9 @@ class WordCounterOnTheSite:
         Количество вхождений слова, которые видно
         в браузере (с учётом регистра).
         """
-
-        s = self.html                   # Короткий вид для переменной.
-
-        s = s[s.index('<body'):]        # Сносим заголовок.
-
-        y = r'<script'                  # Сносим скрипты.
-        z = re.findall(y, s)
-        for script in z:
-            s1 = s.index('<script')
-            s2 = s.index('/script>') + 8
-            s = s[:s1] + s[s2:]
-
-        Python_re = r'(\<[^\<\>]*\>)'   # Сносим остальную системную инфу.
-        z = re.findall(Python_re, s)
-        for el in z:
-            if el in s:
-                s = s.replace(el, '*')
-
-        return f'{str(s.count(word))} вхождений.'       # Ответ.
+        if self.error:
+            return self.error
+        return f'Количество вхождений: {str(self.clear_html.count(word))}'       # Ответ.
 
 
 
@@ -59,7 +66,8 @@ class WordCounterOnTheSite:
         Нахождение максимально часто встречающихся строк между
         тегами <code> и </code> (вывод в алфавитном порядке).
         """
-
+        if self.error:
+            return self.error
         s = self.html                   # Короткий вид для переменной.
 
         # Находим все нужные строки по условию.
@@ -98,6 +106,8 @@ class WordCounterOnTheSite:
         """
         Суммирование значений ячеек таблицы формата html.
         """
+        if self.error:
+            return self.error
 
         # Вытаскиваем ячейки с сайта.
         soup = BeautifulSoup(self.html, 'html.parser')

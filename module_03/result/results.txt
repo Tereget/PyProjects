@@ -1,5 +1,5 @@
 Score tag in node:
-884 24305
+316 6166
 
 
 Score azs on node:

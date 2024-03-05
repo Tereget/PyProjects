@@ -39,6 +39,7 @@ class FindingInformationInXML:
         for node in self.parsedxml['osm']['node']:
             if 'tag' in node:
                 score = 0
+                print(node['tag'])
                 if type(node['tag']) == dict:
                     node['tag'] = [node['tag']]
                 for tag in node['tag']:

@@ -1,15 +1,14 @@
 Total score:
-0 вхождений.
+Количество вхождений: 3
 
 
 Visible on the site:
-0 вхождений.
+Количество вхождений: 467
 
 
 Frequent line in code tag:
-Строки с тегами "code" не найдены.
+else except finally
 
 
 Sum of cell values:
-Сумма значений всех ячеек: 29536
-Количество ячеек, не являющихся числами: 0
+Сайт https://stepik.org/media/attachments/lesson/209723/4.htl - не найден.
