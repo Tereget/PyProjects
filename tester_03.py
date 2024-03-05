@@ -23,3 +23,4 @@ if __name__ == "__main__":
     with open(f'{rdir}results.txt', 'w') as ouf:
         ouf.write(f'Score tag in node:\n{res_01}\n\n\nScore azs on node:\n'
                   f'{res_02}\n\n\nScore azs all:\n{res_03}')
+

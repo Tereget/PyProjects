@@ -7,7 +7,7 @@ rdir = os.path.join('module_01/result/')
 site_01 = 'https://stepik.org/media/attachments/lesson/209717/1.html'
 site_02 = 'https://ru.wikipedia.org/wiki/Python'
 site_03 = 'https://stepik.org/media/attachments/lesson/209719/2.html'
-site_04 = 'https://stepik.org/media/attachments/lesson/209723/4.htl'
+site_04 = 'https://stepik.org/media/attachments/lesson/209723/4.html'
 word = 'Python'
 
 if __name__ == "__main__":
