@@ -39,6 +39,7 @@ C помощью venv:
 	python3.9 tester_02.py
 	python3.9 tester_03.py
 	python3.9 tester_04.py
+	python3.9 tester_05.py
 ```
 
 
