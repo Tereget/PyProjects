@@ -1,23 +1,26 @@
+import os
+
 import xmltodict
 
 
 class FindingInformationInXML:
-    def __init__(self, file_name, path_name='module_03/src/'):
-
+    def __init__(self, file_name):
         # Получаем данные из файла в текстовом виде.
-        try:
-            with open(f'{path_name}{file_name}', 'r', encoding='utf8') as inf:
+        if os.path.isfile(file_name):
+            with open(file_name, 'r', encoding='utf8') as inf:
                 xml = inf.read()
             self.parsedxml = xmltodict.parse(xml)
-        except:
-            raise Exception('Файл не найден')
-
+        else:
+            self.parsedxml = None
 
 
     def score_tag_in_node(self):
         """
         Количество точечных объектов с вложенным тэгом "tag"/без тэга.
         """
+
+        if self.parsedxml == None:
+            return 'Файл не идентифицирован'
 
         score_plus = 0
         score_minus = 0
@@ -34,6 +37,9 @@ class FindingInformationInXML:
         """
         Количество заправок (точечные объекты).
         """
+
+        if self.parsedxml == None:
+            return 'Файл не идентифицирован'
 
         score_azs = 0
         for node in self.parsedxml['osm'][tag]:
@@ -55,6 +61,9 @@ class FindingInformationInXML:
         """
         Количество заправок (общее количество).
         """
+
+        if self.parsedxml == None:
+            return 'Файл не идентифицирован'
 
         score_azs = 0
         for point in self.parsedxml['osm']:
