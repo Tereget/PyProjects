@@ -289,7 +289,7 @@ def salary_calculation(sh):
 - module_01:
 	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L38) - зачем str ? если оставляешь, то делай еще до подачи в requests
 	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L78) - альтернативно: `if not z`
-	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L89-L91) - `j = [key for key in d.keys()]`
+	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L89-L91) - `j = [key for key in d.keys()]` или проще: `j = list(d.keys())`
 	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L81-L91) - закомментировать это решение, чтобы не потерять, и попробовать это: [np.unique](https://numpy.org/doc/stable/reference/generated/numpy.unique.html) с ключом return_counts.
 	- [5](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L94-L98) - норм. Еще можно так: `j = [line.removesuffix('<code>').removesuffix('</code>') for line in j]`
 	- [6](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L131) - зачем возвращать кортеж, а не строку ?
