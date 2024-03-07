@@ -268,3 +268,65 @@ def salary_calculation(sh):
 		- назвать функции так, чтоб они лучше отражали суть: sinus, sinus_shifted, osm_points. Как-то так
 
 
+## TASK_05
+
+### 1. README
+
+- дописать, что установка python3.9 написана для linux. 
+- а на винде можно подобную хуйню провернуть ?
+- необязательная задача: разобраться и написать инструкцию по установке окружения с помощью conda. [YouTube](https://www.youtube.com/watch?v=wWw7PR-Cwuw), [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment)
+
+
+### 2. Code
+
+- общие замечания:
+	- Внутри скобок в f-string может быть любой тип данных. Не нужно приводить его к str. Удалить.
+	- Удалить очевидные комментарии типо "ответ", "Короткий вид для переменной."
+	- Что за cgi-bin ?
+	- Ты уверен, что если подавать в os.path.join куски со слешами, он их заменит? Проверь на винде
+
+
+- module_01:
+	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L38) - зачем str ? если оставляешь, то делай еще до подачи в requests
+	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L78) - альтернативно: `if not z`
+	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L89-L91) - `j = [key for key in d.keys()]`
+	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L81-L91) - закомментировать это решение, чтобы не потерять, и попробовать это: [np.unique](https://numpy.org/doc/stable/reference/generated/numpy.unique.html) с ключом return_counts.
+	- [5](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L94-L98) - норм. Еще можно так: `j = [line.removesuffix('<code>').removesuffix('</code>') for line in j]`
+	- [6](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L131) - зачем возвращать кортеж, а не строку ?
+	- [7](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L47-L48) - чтобы не дублировать этот код в каждом методе, нужно вынести это в отдельный метод, и вызывать его в начале каждой функции. Аналогично в модуле 3. Желательно еще в ините оповещать принтом, что файл не найден.
+	- [8](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_01/web.py#L64) - в теории можно было бы еще в ключевой аргумент добавить 'code', и потом вставлять его в f-string везде, где он встречается.
+
+
+- module_02:
+	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L16-L18) - схуяли вне main? Зип файл! Винрары ваевале!
+	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L39) - isinstance
+	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L38-L68) - ну это же пиздец. if else идентичен. это надо выносить в функцию.
+	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L70) - запись файла во время открытия другого файла. Вопрос: что нужно сделать с этой строкой ?
+	- [5](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L5C8-L6) - это где-то используется ?
+	- [6](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L16-L21) - модуль не принимает файлы с определенным расширением ? Надо проверить расширение до того, как подавать в модуль.
+	- [7](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/funcs_for_excel.py#L5) - сделать 2 ключевых аргумента: read_path, save_path. передавать save_path тут: [8](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L19), предварительно вынеся его в аргумент.
+	- [8](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L30) - а можно разделить эти ошибки ?
+	- [9](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L43-L44) - справочник и раскладка вынести в ключевые аргументы
+	- [10](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L66) - нужен экранирующий \ перед первой точкой ?
+	- [11](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L65-L72) - вынести в отдельную функцию
+	- [12](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L93) - сортировать надо по имени колонки, которая есть в датафрейме. колонки 'name' нет. Кстати, можно сортировать по нескольким колонкам. для этого надо передать список с именами колонок.
+	- [13](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L89) - в чем смысл str(int()) ?
+	- в папке src какой-то пиздец происходит. Надо удалить дубликаты папок.
+	- необязательная задача со звездочкой. Внутри функций salary_calculation, nutritious_food, food_energic, food_energic_all_days оставить только часть внутри try, убрать try except. Написать декоратор [Habr](https://habr.com/ru/companies/otus/articles/727590/), в котором будет try except, и принимаемая на вход функция будет вызываться внутри try. Навесить декоратор на перечисленные функции с помощью @.
+
+
+- module_03:
+	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_03.py#L19-L21) - зачем str ?
+	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_03/osm_xml.py#L32) - ебучие str
+	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_03/osm_xml.py#L57C1-L59C1) - это пайчарм требует 3 строки пустых ?
+	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_03/osm_xml.py#L48-L54) - теперь я понял, что было. Меня смущало имено изменение словаря во время перебора словаря. Сейчас есть `nt = node['tag']`, поэтому после isinstance можно вернуть `nt = [nt]`
+
+
+- module_05:
+	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_05/mk_mt_text.py#L11) - лучше сделать self.start и self.finish
+	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_05/mk_mt_text.py#L40) - str убрать
+	- может лучше объединить 3 py файла в один ?
+
+	
+
+
