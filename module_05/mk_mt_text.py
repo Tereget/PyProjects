@@ -2,6 +2,10 @@ import os
 
 
 def mk_html():
+    """
+    Пустая HTML-страница.
+    """
+
     start = '<html>\n<body>\n'
     finish = '</body>\n</html>'
     return start, finish
@@ -11,6 +15,10 @@ class MakeMT:
         self.skelet = mk_html()
 
     def index_html(self):
+        """
+        Главная HTML-страница.
+        """
+
         table_out = self.skelet[0]
 
         table_out += ('<form action="/cgi-bin/data_in.py">\n'
@@ -28,6 +36,10 @@ class MakeMT:
         return table_out
 
     def mt_text(self):
+        """
+        Таблица умножения в текстовом формате (HTML-страница).
+        """
+
         table_out = f'{self.skelet[0]}<table>\n'
         o = 1
         for i in range(10):
@@ -37,7 +49,7 @@ class MakeMT:
             for j in range(10):
                 x = o
                 x *= z
-                y = f'<td>{str(x)}</td>\n'
+                y = f'<td>{x}</td>\n'
                 table_out += y
                 z += 1
             y = '</tr>\n'

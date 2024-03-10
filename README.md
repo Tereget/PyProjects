@@ -8,8 +8,9 @@
 - Модуль №5: Запуск сервера и генерация html.
 
 
-#### Установка интерпретатора (python v.3.9):
+#### Установка интерпретатора (python v.3.9 for linux):
 ```commandline
+
 	sudo apt update
 	sudo apt install software-properties-common
 	sudo add-apt-repository ppa:deadsnakes/ppa

@@ -6,6 +6,10 @@ from module_05.mk_mt_text import MakeMT
 class MakeMTWithLink(MakeMT):
 
     def mt_link(self):
+        """
+        Таблица умножения со ссылками (HTML-страница).
+        """
+
         table_out = self.mt_text()
         y = r'<td>[0-9]{1,3}</td>'
         for s in table_out.splitlines():

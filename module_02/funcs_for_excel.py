@@ -67,7 +67,6 @@ def salary_calculation(sh):
             prof_output += f', {key}'
     out = f'{region_output} {prof_output}'
 
-    # - 4: Получаем ответ.
     return out
 
 
@@ -93,7 +92,7 @@ def nutritious_food(sh):
 
     # - 2: Переносим значения в список и сортируем по коллориям.
     for key, value in d.items():
-        sp.append(f'{str(key)}*{value}')
+        sp.append(f'{key}*{value}')
     sp.sort()
     sp.reverse()
 
@@ -104,7 +103,6 @@ def nutritious_food(sh):
         for name in sp_el[2:]:
             sp_new.append(name)
 
-    # - 4: Возвращаем список блюд.
     return sp_new
 
 
@@ -136,7 +134,7 @@ def food_energic(sh_1, sh_2):
                     for score in j[1:5]:
                         if score == '':
                             score = 0
-                        d[j[0]] += f'/{str(float(score) / 100)}'
+                        d[j[0]] += f'/{float(score) / 100}'
                 except ValueError:
                     continue
 
@@ -151,9 +149,8 @@ def food_energic(sh_1, sh_2):
             i += 1
     str_out = ''
     for result in sp_out:
-        str_out += f'{str(int(result))} '
+        str_out += f'{int(result)} '
 
-    # - 3: Ответ.
     return str_out
 
 
@@ -197,7 +194,7 @@ def food_energic_all_days(sh_1, sh_2):
                         for score in j[1:5]:
                             if score == '':
                                 score = 0
-                            d[j[0]] += f'/{str(float(score) / 100)}'
+                            d[j[0]] += f'/{float(score) / 100}'
                     except ValueError:
                         continue
 
@@ -212,11 +209,10 @@ def food_energic_all_days(sh_1, sh_2):
                 i += 1
         str_out = ''
         for result in sp_out:
-            str_out += f'{str(int(result))} '
+            str_out += f'{int(result)} '
         str_out = str_out.rstrip(' ')
         d_out[h] = str_out
 
-    # - 3: Ответ.
     day_lst_out = []
     for k in day_lst:
         day_lst_out.append(d_out[k])

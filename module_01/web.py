@@ -1,5 +1,4 @@
 import re
-import urllib.error
 from urllib.request import urlopen
 from collections import defaultdict
 
@@ -24,8 +23,7 @@ def html_cleaning(html):
         if el in s:
             s = s.replace(el, '*')
 
-    return s                       # Очищенная версия.
-
+    return s
 
 
 class WordCounterOnTheSite:
@@ -46,8 +44,7 @@ class WordCounterOnTheSite:
         """
         if self.error:
             return self.error
-        return f'Количество вхождений: {str(self.html.count(word))}'    # Ответ.
-
+        return f'Количество вхождений: {self.html.count(word)}'
 
 
     def visible_on_the_site(self, word):
@@ -57,8 +54,7 @@ class WordCounterOnTheSite:
         """
         if self.error:
             return self.error
-        return f'Количество вхождений: {str(self.clear_html.count(word))}'       # Ответ.
-
+        return f'Количество вхождений: {self.clear_html.count(word)}'
 
 
     def frequent_line_in_code_tag(self):
@@ -68,7 +64,7 @@ class WordCounterOnTheSite:
         """
         if self.error:
             return self.error
-        s = self.html                   # Короткий вид для переменной.
+        s = self.html
 
         # Находим все нужные строки по условию.
         y = r'\<code\>\w+<\/code\>'
@@ -98,8 +94,7 @@ class WordCounterOnTheSite:
             new_j.append(designs)
         new_j.sort()
         str_out = ' '.join(new_j)
-        return str_out                  # Ответ.
-
+        return str_out
 
 
     def sum_of_cell_values(self):
@@ -128,4 +123,4 @@ class WordCounterOnTheSite:
                 sum += int(cell)
             else:
                 unk_str += 1
-        return (f'Сумма значений всех ячеек: {str(sum)}\nКоличество ячеек, не являющихся числами: {str(unk_str)}')     # Ответ.
+        return f'Сумма значений всех ячеек: {sum}\nКоличество ячеек, не являющихся числами: {unk_str}'

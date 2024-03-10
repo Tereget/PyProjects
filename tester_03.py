@@ -16,9 +16,9 @@ if __name__ == "__main__":
     x1 = FindingInformationInXML(map_01)
     x2 = FindingInformationInXML(map_02)
 
-    res_01 = str(x1.score_tag_in_node())
-    res_02 = str(x2.score_azs_on_node())
-    res_03 = str(x2.score_azs_all())
+    res_01 = x1.score_tag_in_node()
+    res_02 = x2.score_azs_on_node()
+    res_03 = x2.score_azs_all()
 
     with open(f'{rdir}results.txt', 'w') as ouf:
         ouf.write(f'Score tag in node:\n{res_01}\n\n\nScore azs on node:\n'

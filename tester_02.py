@@ -13,9 +13,9 @@ file_03 = f'{sdir}trekking2.xlsx'
 file_04 = f'{sdir}trekking3.xlsx'
 dir_01 = f'{sdir}roga'
 
-if dir_01 not in os.listdir(sdir):
+if dir_01 not in os.listdir():
     with zipfile.ZipFile(f'{sdir}rogaikopyta.zip', 'r') as zip_ref:
-        zip_ref.extractall(f'{sdir}{dir_01}')
+        zip_ref.extractall(f'{dir_01}')
 
 if __name__ == "__main__":
     print("Hello, World!")

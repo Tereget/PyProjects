@@ -29,7 +29,7 @@ class FindingInformationInXML:
                 score_plus += 1
             else:
                 score_minus += 1
-        return f'{str(score_plus)} {str(score_minus)}'
+        return f'{score_plus} {score_minus}'
 
 
 

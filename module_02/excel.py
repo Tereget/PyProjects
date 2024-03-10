@@ -56,7 +56,6 @@ class TableProcessing:
             return 'Некорректные данные в файле, либо файл отсутствует'
 
 
-
 def salary_calculation_using_tables(dir_name):
     """
     Функция для заполнения общей ведомости по имеющимся расчётным листкам.
@@ -90,7 +89,6 @@ def salary_calculation_using_tables(dir_name):
 
     # - 3: Создаём и сортируем датафрейм.
     df = pd.DataFrame({"ФИО": sp_name, "Начислено": sp_money})
-    df = df.sort_values(by='name')
+    df = df.sort_values(by='ФИО')
 
-    # - 4: Возвращаем ответ.
     return df
