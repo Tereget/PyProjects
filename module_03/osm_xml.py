@@ -46,12 +46,10 @@ class FindingInformationInXML:
             if 'tag' in node:
                 nt = node['tag']
                 if isinstance(nt, dict):
-                    if nt['@k'] == 'amenity' and nt['@v'] == 'fuel':
+                    nt = [nt]
+                for tag in nt:
+                    if tag['@k'] == 'amenity' and tag['@v'] == 'fuel':
                         score_azs += 1
-                else:
-                    for tag in nt:
-                        if tag['@k'] == 'amenity' and tag['@v'] == 'fuel':
-                            score_azs += 1
 
         return score_azs
 

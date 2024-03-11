@@ -1,4 +1,16 @@
-import os
+import re
+from http.server import HTTPServer
+from http.server import CGIHTTPRequestHandler
+
+
+def run():
+    """
+    Запуск локального сервера.
+    """
+
+    server_address = ('', 8000)
+    httpd = HTTPServer(server_address, CGIHTTPRequestHandler)
+    httpd.serve_forever()
 
 
 def mk_html():
@@ -10,16 +22,18 @@ def mk_html():
     finish = '</body>\n</html>'
     return start, finish
 
+
 class MakeMT:
     def __init__(self):
-        self.skelet = mk_html()
+        self.start, self.finish = mk_html()
+
 
     def index_html(self):
         """
         Главная HTML-страница.
         """
 
-        table_out = self.skelet[0]
+        table_out = self.start
 
         table_out += ('<form action="/cgi-bin/data_in.py">\n'
                       '<label for="name">Num by word</label>\n'
@@ -31,7 +45,7 @@ class MakeMT:
                       '<input type="text" name="INPUT_TEXT">\n'
                       '<input type="submit">\n</form>\n')
 
-        table_out += self.skelet[1]
+        table_out += self.finish
 
         return table_out
 
@@ -40,7 +54,7 @@ class MakeMT:
         Таблица умножения в текстовом формате (HTML-страница).
         """
 
-        table_out = f'{self.skelet[0]}<table>\n'
+        table_out = f'{self.start}<table>\n'
         o = 1
         for i in range(10):
             y = '<tr>\n'
@@ -55,6 +69,24 @@ class MakeMT:
             y = '</tr>\n'
             table_out += y
             o += 1
-        table_out += f'</table>\n{self.skelet[1]}'
+        table_out += f'</table>\n{self.finish}'
+
+        return table_out
+
+
+class MakeMTWithLink(MakeMT):
+    def mt_link(self):
+        """
+        Таблица умножения со ссылками (HTML-страница).
+        """
+
+        table_out = self.mt_text()
+        y = r'<td>[0-9]{1,3}</td>'
+        for s in table_out.splitlines():
+            z = re.search(y, table_out)
+            if z:
+                num = table_out[z.start() + 4:z.end() - 5]
+                cfl = f'<td><a href="http://{num}.ru">{num}</a></td>'
+                table_out = table_out.replace(z.group(), cfl)
 
         return table_out
