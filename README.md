@@ -280,7 +280,7 @@ def salary_calculation(sh):
 
 ### 2. Code
 
-- общие замечания: [-+]
+- общие замечания: [-+?]
 	- Внутри скобок в f-string может быть любой тип данных. Не нужно приводить его к str. Удалить. [+]
 	- Удалить очевидные комментарии типо "ответ", "Короткий вид для переменной." [+?] Нет понимания "очевидности". node[tag] = [node[tag]] столь же очевидно, как и короткий вид, но без коммента ты не вдуплил.
 	- Что за cgi-bin ? [+]
@@ -299,13 +299,13 @@ def salary_calculation(sh):
 
 
 - module_02:
-	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L16-L18) - схуяли вне main? Зип файл! Винрары ваевале!
-	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L39) - isinstance
-	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L38-L68) - ну это же пиздец. if else идентичен. это надо выносить в функцию.
-	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L70) - запись файла во время открытия другого файла. Вопрос: что нужно сделать с этой строкой ?
-	- [5](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L5C8-L6) - это где-то используется ?
-	- [6](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L16-L21) - модуль не принимает файлы с определенным расширением ? Надо проверить расширение до того, как подавать в модуль.
-	- [7](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/funcs_for_excel.py#L5) - сделать 2 ключевых аргумента: read_path, save_path. передавать save_path тут: [8](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L19), предварительно вынеся его в аргумент.
+	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L16-L18) - схуяли вне main? Зип файл! Винрары ваевале! [+]
+	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L39) - isinstance [+]
+	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L38-L68) - ну это же пиздец. if else идентичен. это надо выносить в функцию. [+]
+	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L70) - запись файла во время открытия другого файла. Вопрос: что нужно сделать с этой строкой ? [+] Спалил сам, когда сокращал полотно на предыдущем пункте)
+	- [5](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L5C8-L6) - это где-то используется ? [+] В конвертации файла.
+	- [6](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L16-L21) - модуль не принимает файлы с определенным расширением ? Надо проверить расширение до того, как подавать в модуль. [-] Не понял. Зачем проверять? И на что проверять? В данном сценарии я избавлен от этих вопросов. Код съедает, что может съесть, и трансформирует то, что - не может.
+	- [7](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/funcs_for_excel.py#L5) - сделать 2 ключевых аргумента: read_path, save_path. передавать save_path тут: [8](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L19), предварительно вынеся его в аргумент. [-] Не понял совершенно.
 	- [8](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L30) - а можно разделить эти ошибки ?
 	- [9](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L43-L44) - справочник и раскладка вынести в ключевые аргументы
 	- [10](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L66) - нужен экранирующий \ перед первой точкой ?

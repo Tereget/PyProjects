@@ -5,6 +5,16 @@ from module_02.excel import TableProcessing
 from module_02.excel import salary_calculation_using_tables
 
 
+def writing(head, result):
+    ouf.write(f'{head}:\n')
+    if isinstance(result, str):
+        ouf.write(f'{result}')
+    else:
+        for value in result:
+            ouf.write(f'{value}\n')
+    ouf.write('\n\n\n')
+
+
 rdir = os.path.join('module_02/result/')
 sdir = os.path.join('module_02/src/')
 file_01 = f'{sdir}salaries.xlsx'
@@ -13,12 +23,12 @@ file_03 = f'{sdir}trekking2.xlsx'
 file_04 = f'{sdir}trekking3.xlsx'
 dir_01 = f'{sdir}roga'
 
-if dir_01 not in os.listdir():
-    with zipfile.ZipFile(f'{sdir}rogaikopyta.zip', 'r') as zip_ref:
-        zip_ref.extractall(f'{dir_01}')
-
 if __name__ == "__main__":
     print("Hello, World!")
+
+    if dir_01 not in os.listdir():
+        with zipfile.ZipFile(f'{sdir}rogaikopyta.zip', 'r') as zip_ref:
+            zip_ref.extractall(f'{dir_01}')
 
     os.makedirs(rdir, exist_ok=True)
 
@@ -34,37 +44,9 @@ if __name__ == "__main__":
     res_05 = salary_calculation_using_tables(dir_01)
 
     with open(f'{rdir}results.txt', 'w') as ouf:
+        writing('Salary calculation', res_01)
+        writing('Nutricious food', res_02)
+        writing('Food energic', res_03)
+        writing('Food energic all days', res_04)
 
-        ouf.write(f'Salary calculation:\n')
-        if type(res_01) == str:
-            ouf.write(f'{res_01}')
-        else:
-            for value in res_01:
-                ouf.write(f'{value}\n')
-        ouf.write('\n\n\n')
-
-        ouf.write(f'Nutricious food:\n')
-        if type(res_02) == str:
-            ouf.write(f'{res_02}')
-        else:
-            for value in res_02:
-                ouf.write(f'{value}\n')
-        ouf.write('\n\n\n')
-
-        ouf.write(f'Food energic:\n')
-        if type(res_03) == str:
-            ouf.write(f'{res_03}')
-        else:
-            for value in res_03:
-                ouf.write(f'{value}\n')
-        ouf.write('\n\n\n')
-
-        ouf.write(f'Food energic all days:\n')
-        if type(res_04) == str:
-            ouf.write(f'{res_04}')
-        else:
-            for value in res_04:
-                ouf.write(f'{value}\n')
-        ouf.write('\n\n\n')
-
-        res_05.to_excel(f'{rdir}result.xlsx', index=0)
+    res_05.to_excel(f'{rdir}result.xlsx', index=0)
