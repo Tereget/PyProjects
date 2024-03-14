@@ -14,14 +14,26 @@ class FindingInformationInXML:
             self.parsedxml = None
 
 
+    def dekor(func):
+        """
+        Трай-эксепт, потому что у функций разное количество аргов. Если убирать трай-эксепт, то либо
+        придётся дубликат декоратора делать, либо вносить фиктивные арги в функции для выравнивания.
+        """
+        def wrapper(self, tag='node'):
+            if self.parsedxml == None:
+                return 'Файл не идентифицирован'
+            try:
+                return func(self, tag)
+            except TypeError:
+                return func(self)
+        return wrapper
+
+
+    @dekor
     def score_tag_in_node(self):
         """
         Количество точечных объектов с вложенным тэгом "tag"/без тэга.
         """
-
-        if self.parsedxml == None:
-            return 'Файл не идентифицирован'
-
         score_plus = 0
         score_minus = 0
         for node in self.parsedxml['osm']['node']:
@@ -32,15 +44,11 @@ class FindingInformationInXML:
         return f'{score_plus} {score_minus}'
 
 
-
+    @dekor
     def score_azs_on_node(self, tag='node'):
         """
         Количество заправок (точечные объекты).
         """
-
-        if self.parsedxml == None:
-            return 'Файл не идентифицирован'
-
         score_azs = 0
         for node in self.parsedxml['osm'][tag]:
             if 'tag' in node:
@@ -54,18 +62,13 @@ class FindingInformationInXML:
         return score_azs
 
 
-
+    @dekor
     def score_azs_all(self):
         """
         Количество заправок (общее количество).
         """
-
-        if self.parsedxml == None:
-            return 'Файл не идентифицирован'
-
         score_azs = 0
         for point in self.parsedxml['osm']:
             score_azs += self.score_azs_on_node(point)
 
         return score_azs
-

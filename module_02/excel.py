@@ -7,6 +7,7 @@ jpype.startJVM()
 import pandas as pd
 
 from module_02 import funcs_for_excel
+from module_02.funcs_for_excel import dekor
 
 
 class TableProcessing:
@@ -22,38 +23,30 @@ class TableProcessing:
             self.wb = wb
 
 
+    @dekor
     def salary_calculation(self):
-        try:
-            sh = self.wb.sheet_by_index(0)
-            return funcs_for_excel.salary_calculation(sh)
-        except:
-            return 'Некорректные данные в файле, либо файл отсутствует'
+        sh = self.wb.sheet_by_index(0)
+        return funcs_for_excel.salary_calculation(sh)
 
 
+    @dekor
     def nutritious_food(self):
-        try:
-            sh = self.wb.sheet_by_index(0)
-            return funcs_for_excel.nutritious_food(sh)
-        except:
-            return 'Некорректные данные в файле, либо файл отсутствует'
+        sh = self.wb.sheet_by_index(0)
+        return funcs_for_excel.nutritious_food(sh)
 
 
+    @dekor
     def food_energic(self):
-        try:
-            sh_1 = self.wb.sheet_by_name('Справочник')
-            sh_2 = self.wb.sheet_by_name('Раскладка')
-            return funcs_for_excel.food_energic(sh_1, sh_2)
-        except:
-            return 'Некорректные данные в файле, либо файл отсутствует'
+        sh_1 = self.wb.sheet_by_name('Справочник')
+        sh_2 = self.wb.sheet_by_name('Раскладка')
+        return funcs_for_excel.food_energic(sh_1, sh_2)
 
 
+    @dekor
     def food_energic_all_days(self):
-        try:
-            sh_1 = self.wb.sheet_by_name('Справочник')
-            sh_2 = self.wb.sheet_by_name('Раскладка')
-            return funcs_for_excel.food_energic_all_days(sh_1, sh_2)
-        except:
-            return 'Некорректные данные в файле, либо файл отсутствует'
+        sh_1 = self.wb.sheet_by_name('Справочник')
+        sh_2 = self.wb.sheet_by_name('Раскладка')
+        return funcs_for_excel.food_energic_all_days(sh_1, sh_2)
 
 
 def salary_calculation_using_tables(dir_name):

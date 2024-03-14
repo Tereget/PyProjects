@@ -41,35 +41,46 @@ class WordCounterOnTheSite:
             self.clear_html = html_cleaning(self.html)
 
 
+    def dekor(func):
+        """
+        Трай-эксепт, потому что у функций разное количество аргов. Если убирать трай-эксепт, то либо
+        придётся дубликат декоратора делать, либо вносить фиктивные арги в функции для выравнивания.
+        """
+        def wrapper(self, word=None):
+            if self.error:
+                return self.error
+            try:
+                return func(self, word)
+            except TypeError:
+                return func(self)
+        return wrapper
+
+
+    @dekor
     def total_score(self, word):
         """
         Количество всех вхождений слова, с учётом
         системной инфы (с учётом регистра).
         """
-        if self.error:
-            return self.error
         return f'Количество вхождений: {self.html.count(word)}'
 
 
+    @dekor
     def visible_on_the_site(self, word):
         """
         Количество вхождений слова, которые видно
         в браузере (с учётом регистра).
         """
-        if self.error:
-            return self.error
         return f'Количество вхождений: {self.clear_html.count(word)}'
 
 
+    @dekor
     def frequent_line_in_code_tag(self, tag='code'):
         """
         Нахождение максимально часто встречающихся строк между
         тегами <...> и </...> (вывод в алфавитном порядке).
         Тэг по умолчанию: "code".
         """
-
-        if self.error:
-            return self.error
         s = self.html
 
         # Находим все нужные строки по условию.
@@ -104,12 +115,11 @@ class WordCounterOnTheSite:
         return str_out
 
 
+    @dekor
     def sum_of_cell_values(self):
         """
         Суммирование значений ячеек таблицы формата html.
         """
-        if self.error:
-            return self.error
 
         # Вытаскиваем ячейки с сайта.
         soup = BeautifulSoup(self.html, 'html.parser')

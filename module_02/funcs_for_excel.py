@@ -2,6 +2,15 @@ from asposecells.api import Workbook
 from collections import defaultdict
 
 
+def dekor(func):
+    def wrapper(self):
+        try:
+            return func(self)
+        except:
+            return 'Некорректные данные в файле, либо файл отсутствует'
+    return wrapper
+
+
 def xls_converting(path_file_name):
     """
     Конвертация в читаемый формат.

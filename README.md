@@ -312,8 +312,8 @@ def salary_calculation(sh):
 	- [11](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L65-L72) - вынести в отдельную функцию
 	- [12](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L93) - сортировать надо по имени колонки, которая есть в датафрейме. колонки 'name' нет. Кстати, можно сортировать по нескольким колонкам. для этого надо передать список с именами колонок.
 	- [13](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L89) - в чем смысл str(int()) ?
-	- в папке src какой-то пиздец происходит. Надо удалить дубликаты папок.
-	- необязательная задача со звездочкой. Внутри функций salary_calculation, nutritious_food, food_energic, food_energic_all_days оставить только часть внутри try, убрать try except. Написать декоратор [Habr](https://habr.com/ru/companies/otus/articles/727590/), в котором будет try except, и принимаемая на вход функция будет вызываться внутри try. Навесить декоратор на перечисленные функции с помощью @.
+	- в папке src какой-то пиздец происходит. Надо удалить дубликаты папок. [+]
+	- необязательная задача со звездочкой. Внутри функций salary_calculation, nutritious_food, food_energic, food_energic_all_days оставить только часть внутри try, убрать try except. Написать декоратор [Habr](https://habr.com/ru/companies/otus/articles/727590/), в котором будет try except, и принимаемая на вход функция будет вызываться внутри try. Навесить декоратор на перечисленные функции с помощью @. [+]
 
 
 - module_03: [+]
