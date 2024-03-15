@@ -1,3 +1,6 @@
+import os
+import re
+
 from asposecells.api import Workbook
 from collections import defaultdict
 
@@ -6,8 +9,10 @@ def dekor(func):
     def wrapper(self):
         try:
             return func(self)
+        except AttributeError:
+            return 'Файл отсутствует'
         except:
-            return 'Некорректные данные в файле, либо файл отсутствует'
+            return 'Некорректные данные в файле'
     return wrapper
 
 
@@ -226,3 +231,15 @@ def food_energic_all_days(sh_1, sh_2):
     for k in day_lst:
         day_lst_out.append(d_out[k])
     return day_lst_out
+
+
+def finding_tables(dir_name):
+    file_list = []
+    y = r'\.xl.{0,2}$'
+    if os.path.isdir(dir_name):
+        for file in os.listdir(dir_name):
+            if re.search(y, file):
+                file_list.append(file)
+        return file_list
+    else:
+        return 'Некорректный путь к файлам'

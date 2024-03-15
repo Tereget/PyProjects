@@ -5,7 +5,7 @@ from module_04.graphs_with_pyplot import sinus_shifted
 from module_04.graphs_with_pyplot import osm_points
 
 
-rdir = os.path.join('module_04/result/')
+rdir = os.path.join('module_04', 'result', '')
 
 if __name__ == "__main__":
     print("Hello, World!")

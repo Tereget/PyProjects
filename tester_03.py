@@ -3,8 +3,8 @@ import os
 from module_03.osm_xml import FindingInformationInXML
 
 
-rdir = os.path.join('module_03/result/')
-sdir = os.path.join('module_03/src/')
+rdir = os.path.join('module_03', 'result', '')
+sdir = os.path.join('module_03', 'src', '')
 map_01 = f'{sdir}map1.osm'
 map_02 = f'{sdir}map2.osm'
 

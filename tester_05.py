@@ -16,8 +16,13 @@ from module_05.mk_html import MakeMTWithLink
 """
 
 
-rdir = os.path.join('module_05/result/')
-nbw = os.path.join(f'{rdir}num_by_word/')
+def write(dir, res, name):
+    with open(f'{dir}{name}', 'w') as ouf:
+        ouf.write(res)
+
+
+rdir = os.path.join('module_05', 'result', '')
+nbw = os.path.join(rdir, 'num_by_word', '')
 
 if __name__ == "__main__":
     print("Hello, World!")
@@ -32,13 +37,8 @@ if __name__ == "__main__":
     res2 = x1.index_html()
     res3 = x2.mt_link()
 
-    with open(f'{rdir}mt_text.html', 'w') as ouf:
-        ouf.write(res1)
-
-    with open(f'{nbw}index.html', 'w') as ouf:
-        ouf.write(res2)
-
-    with open(f'{rdir}mt_link.html', 'w') as ouf:
-        ouf.write(res3)
+    write(rdir, res1, 'mt_text.html')
+    write(nbw, res2, 'index.html')
+    write(rdir, res3, 'mt_link.html')
 
     run()

@@ -3,7 +3,7 @@ import os
 from module_01.web import WordCounterOnTheSite
 
 
-rdir = os.path.join('module_01/result/')
+rdir = os.path.join('module_01', 'result', '')
 site_01 = 'https://stepik.org/media/attachments/lesson/209717/1.html'
 site_02 = 'https://ru.wikipedia.org/wiki/Python'
 site_03 = 'https://stepik.org/media/attachments/lesson/209719/2.html'

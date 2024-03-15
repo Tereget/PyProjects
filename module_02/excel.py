@@ -1,5 +1,4 @@
 import os
-import re
 
 import xlrd
 import jpype
@@ -36,16 +35,16 @@ class TableProcessing:
 
 
     @dekor
-    def food_energic(self):
-        sh_1 = self.wb.sheet_by_name('Справочник')
-        sh_2 = self.wb.sheet_by_name('Раскладка')
+    def food_energic(self, l_one='Справочник', l_two='Раскладка'):
+        sh_1 = self.wb.sheet_by_name(l_one)
+        sh_2 = self.wb.sheet_by_name(l_two)
         return funcs_for_excel.food_energic(sh_1, sh_2)
 
 
     @dekor
-    def food_energic_all_days(self):
-        sh_1 = self.wb.sheet_by_name('Справочник')
-        sh_2 = self.wb.sheet_by_name('Раскладка')
+    def food_energic_all_days(self, l_one='Справочник', l_two='Раскладка'):
+        sh_1 = self.wb.sheet_by_name(l_one)
+        sh_2 = self.wb.sheet_by_name(l_two)
         return funcs_for_excel.food_energic_all_days(sh_1, sh_2)
 
 
@@ -53,15 +52,9 @@ def salary_calculation_using_tables(dir_name):
     """
     Функция для заполнения общей ведомости по имеющимся расчётным листкам.
     """
-
-    file_list = []
-    y = r'.xl.{0,2}$'
-    if os.path.isdir(dir_name):
-        for file in os.listdir(dir_name):
-            if re.search(y, file):
-                file_list.append(file)
-    else:
-        return 'Некорректный путь к файлам'
+    file_list = funcs_for_excel.finding_tables(dir_name)
+    if isinstance(file_list, str):
+        return file_list
 
     # - 1: Создаём пустой список и заполняем значениями "ФИО, Начислено".
     sp_name = []
@@ -78,7 +71,7 @@ def salary_calculation_using_tables(dir_name):
 
         # - 2.2: Добавляем значения в списки.
         sp_name.append(name)
-        sp_money.append(str(int(money)))
+        sp_money.append(int(money))
 
     # - 3: Создаём и сортируем датафрейм.
     df = pd.DataFrame({"ФИО": sp_name, "Начислено": sp_money})

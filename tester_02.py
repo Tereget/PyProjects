@@ -15,13 +15,13 @@ def writing(head, result):
     ouf.write('\n\n\n')
 
 
-rdir = os.path.join('module_02/result/')
-sdir = os.path.join('module_02/src/')
+rdir = os.path.join('module_02', 'result', '')
+sdir = os.path.join('module_02', 'src', '')
 file_01 = f'{sdir}salaries.xlsx'
 file_02 = f'{sdir}trekking1.xlsx'
 file_03 = f'{sdir}trekking2.xlsx'
 file_04 = f'{sdir}trekking3.xlsx'
-dir_01 = f'{sdir}roga'
+dir_01 = os.path.join(sdir, 'roga', '')
 
 if __name__ == "__main__":
     print("Hello, World!")
@@ -49,4 +49,8 @@ if __name__ == "__main__":
         writing('Food energic', res_03)
         writing('Food energic all days', res_04)
 
-    res_05.to_excel(f'{rdir}result.xlsx', index=0)
+    try:
+        res_05.to_excel(f'{rdir}result.xlsx', index=0)
+    except AttributeError:
+        with open(f'{rdir}results.txt', 'a') as ouf:
+            ouf.write(f'Salary calculation using tables:\n{res_05}')
