@@ -8,13 +8,21 @@
 - Модуль №5: Запуск сервера и генерация html.
 
 
-#### Установка интерпретатора (python v.3.9 for linux):
+#### Установка интерпретатора (python v.3.9):
 ```commandline
 
+OS Linux:
 	sudo apt update
 	sudo apt install software-properties-common
 	sudo add-apt-repository ppa:deadsnakes/ppa
 	sudo apt install python3.9
+	
+OS Windows:
+	https://bangbangeducation.ru/point/razrabotka/kak-ustanovit-python/#2
+	
+OS MacOS:
+	$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	$ brew install python[version]
 ```
 
 #### Установка окружения (python v.3.9):
@@ -31,6 +39,14 @@ C помощью venv:
 	python3.9 -m venv kitty
 	source kitty/bin/activate
 	pip3.9 install -r ./requirements.txt
+	
+С помощью conda:
+	wget https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
+	bash Anaconda3-2024.02-1-Linux-x86_64.sh
+	source ~/.bashrc
+	rm Anaconda3-2024.02-1-Linux-x86_64.sh 
+	conda env create -n kitty -f environment.yml  
+	conda activate kitty
 ```
 
 
@@ -269,18 +285,18 @@ def salary_calculation(sh):
 		- назвать функции так, чтоб они лучше отражали суть: sinus, sinus_shifted, osm_points. Как-то так
 
 
-## TASK_05
+## TASK_05 [+-?]
 
-### 1. README
+### 1. README [+?]
 
 - дописать, что установка python3.9 написана для linux. [+]
-- а на винде можно подобную хуйню провернуть ? [-] - газую назад.
-- необязательная задача: разобраться и написать инструкцию по установке окружения с помощью conda. [YouTube](https://www.youtube.com/watch?v=wWw7PR-Cwuw), [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment)
+- а на винде можно подобную хуйню провернуть ? [+?] - По винде - тупо ссылка. По маку - не проверенная хуйня.
+- необязательная задача: разобраться и написать инструкцию по установке окружения с помощью conda. [YouTube](https://www.youtube.com/watch?v=wWw7PR-Cwuw), [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) [+] Есть подозрение, что env.yml устанавливает, кроме нужного - что-то ещё.
 
 
-### 2. Code [+?]
+### 2. Code [+-?]
 
-- общие замечания: [+-?]
+- общие замечания: [+?]
 	- Внутри скобок в f-string может быть любой тип данных. Не нужно приводить его к str. Удалить. [+]
 	- Удалить очевидные комментарии типо "ответ", "Короткий вид для переменной." [+?] Нет понимания "очевидности". node[tag] = [node[tag]] столь же очевидно, как и короткий вид, но без коммента ты не вдуплил.
 	- Что за cgi-bin ? [+]
@@ -300,7 +316,7 @@ def salary_calculation(sh):
 
 - module_02: [+-]
 	- [1](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L16-L18) - схуяли вне main? Зип файл! Винрары ваевале! [+]
-	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L39) - isinstance [+]
+	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L39) - isinstance [+] Нужна пояснительная бригада.
 	- [3](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L38-L68) - ну это же пиздец. if else идентичен. это надо выносить в функцию. [+]
 	- [4](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/tester_02.py#L70) - запись файла во время открытия другого файла. Вопрос: что нужно сделать с этой строкой ? [+] Спалил сам, когда сокращал полотно на предыдущем пункте)
 	- [5](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_02/excel.py#L5C8-L6) - это где-то используется ? [+] В конвертации файла.

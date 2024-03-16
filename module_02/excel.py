@@ -14,12 +14,13 @@ class TableProcessing:
         # Получаем данные из файла.
         if os.path.isfile(path_file_name):
             try:
-                wb = xlrd.open_workbook(path_file_name)
+                self.wb = xlrd.open_workbook(path_file_name)
             except xlrd.biffh.XLRDError:
                 funcs_for_excel.xls_converting(path_file_name)
-                wb = xlrd.open_workbook('work_file.xls')
+                self.wb = xlrd.open_workbook('work_file.xls')
                 os.remove('work_file.xls')
-            self.wb = wb
+        else:
+            print(f'Файл: {path_file_name} - отсутствует.')
 
 
     @dekor

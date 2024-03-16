@@ -12,6 +12,7 @@ class FindingInformationInXML:
             self.parsedxml = xmltodict.parse(xml)
         else:
             self.parsedxml = None
+            print('Файл не идентифицирован')
 
 
     def dekor(func):

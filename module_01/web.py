@@ -35,6 +35,7 @@ class WordCounterOnTheSite:
         # Получаем html-код страницы.
         if requests.get(url).status_code == 404:
             self.error = f'Сайт: {url} - не найден.'
+            print(self.error)
         else:
             self.error = None
             self.html = urlopen(url).read().decode('utf-8')
