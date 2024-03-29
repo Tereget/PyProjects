@@ -402,12 +402,13 @@ def salary_calculation(sh):
 		```
 
 		```
-		python3.9 tester_01.py -config_path configs/module_03.yml
+		python3.9 tester_01.py --config_path configs/module_03.yml
 		```
 
 		В качестве конфига можно использовать обычный txt файл, но это неудобно. Обычно используются форматы с определенной разметкой. Например json или yaml:
 		- [Хабр 1](https://habr.com/ru/companies/rambler_and_co/articles/525498/)
 		- [Хабр 2](https://habr.com/ru/articles/485236/)
+
 		Я использую hyperpyyaml:
 			- [pip](https://pypi.org/project/HyperPyYAML/)
 			- [docs](https://github.com/speechbrain/HyperPyYAML/tree/main)
