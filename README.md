@@ -344,6 +344,126 @@ def salary_calculation(sh):
 	- [2](https://github.com/Tereget/PyProjects/blob/3bf42675d2a941414ddeb31ca56d50223a6166c3/module_05/mk_mt_text.py#L40) - str убрать [+]
 	- может лучше объединить 3 py файла в один ? [+]
 
+
+## TASK_06
+
+
+- общие комментарии:
 	
+	- 1. Установить в PyCharm одно из расширений по контролю стиля кода: flake8, pep8, pylint... [Хабр](https://habr.com/ru/articles/681370/). Проверить код с его помощью. Исправить основные ошибки. Обратить особое внимание на:
+		- название переменных, функций и классов
+		- try except
+		- циклы
+		- порядок импортов
+	Наиболее гнетущие исправления можно игнорировать, но обязательно ознакомиться и понять.
+
+
+	- 2. Задача: задавать глобальные аргументы при вызове файлов-тестеров с помощью модуля argparse. C учетом изменений дополнить раздел "Тестирование" в README.
+
+
+	- Комментарий: сейчас глобальные аргументы определяются внутри тестеров (сайты, пути до файлов). Если я хочу запустить скрипт на другом сайте, мне нужно редактировать тестер. Я хочу динамически задавать глобальные аргументы при вызове `python3.9 tester_01.py` Для этого используется модуль argparse [Хабр](https://habr.com/ru/companies/ruvds/articles/440654/), но есть и аналоги (двойки).
+	```
+	import argparse
+
+	if __name__ == "__main__":
+
+	    parser = argparse.ArgumentParser()
+	    parser.add_argument('--telo', type=str, help='original')
+	    args = parser.parse_args()
+	    telo = args.telo
+
+	```
+
+	```
+	python3.9 tester_01.py --telo Vladimir Putin
+	```
+
+	Это работает окей, когда аргументов немного. Когда их много, их заносят в отдельный конфиг, а при вызове питона подают путь до файла с конфигом:
+
+	```
+	import argparse
+
+	if __name__ == "__main__":
+
+	    parser = argparse.ArgumentParser()
+	    parser.add_argument('--config_path', type=str, help='file containing all arguments')
+	    args = parser.parse_args()
+	    config_path = args.config_path
+	    config = load_config(args.config_path)
+	    telo = config['telo']
+	    vasilich = config['vasilich']
+	    banketnyi = config['banketnyi']
+	    udmurt = config['udmurt']
+	    ...
+
+	```
+
+	```
+	python3.9 tester_01.py -config_path configs/module_03.yml
+	```
+
+	В качестве конфига можно использовать обычный txt файл, но это неудобно. Обычно используются форматы с определенной разметкой. Например json или yaml:
+	- [Хабр 1](https://habr.com/ru/companies/rambler_and_co/articles/525498/)
+	- [Хабр 2](https://habr.com/ru/articles/485236/)
+	Я использую hyperpyyaml:
+		- [pip](https://pypi.org/project/HyperPyYAML/)
+		- [docs](https://github.com/speechbrain/HyperPyYAML/tree/main)
+	
+
+- module_01: 
+	- [1](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_01/web.py#L137) - `str(cell.string).strip()`
+	- [2](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_01/web.py#L45-L57):
+		- Надо избавиться от try except
+		- Решение 1: [Раздел: Декорирование функций, принимающих аргументы](https://habr.com/ru/companies/otus/articles/727590/)
+		- Решение 2: Мне вообще не нравится идея определения декоратора внутри класса. Я бы вынес его, а при навешивании на методы класса добавлял бы аргумент `@dekor(error=self.error)`: [тут](https://advpyneng.readthedocs.io/ru/latest/book/08_decorators/with_args.html)
+
+
+- module_02:
+	- 6 - модуль не принимает файлы с определенным расширением ? Надо проверить расширение до того, как подавать в модуль. [-] Не понял. Зачем проверять? И на что проверять? В данном сценарии я избавлен от этих вопросов. Код съедает, что может съесть, и трансформирует то, что - не может.
+	```
+	    try:
+		wb = xlrd.open_workbook(path_file_name)
+	    except xlrd.biffh.XLRDError:
+		funcs_for_excel.xls_converting(path_file_name)
+		wb = xlrd.open_workbook('work_file.xls')
+		os.remove('work_file.xls')
+
+		->
+
+	    # примерно так:
+            if not path_file_name.endswith('.xls'):
+		funcs_for_excel.xls_converting(path_file_name)
+
+            wb = xlrd.open_workbook('work_file.xls')
+            os.remove('work_file.xls')
+	```
+	- 7 - сделать 2 ключевых аргумента: read_path, save_path. передавать save_path тут: 8, предварительно вынеся его в аргумент. [-] Не понял совершенно.
+	```
+	def xls_converting(read_path="morozilnik.dead", save_path="work_file.xls"):
+	    """
+	    Конвертация в читаемый формат.
+	    """
+
+	    workbook = Workbook(read_path)
+	    workbook.save(save_path)
+
+
+	class TableProcessing:
+	...
+		funcs_for_excel.xls_converting(pread_path=read_path, save_path=save_path)
+	...
+	```
+
+
+- module_03:
+	- [1](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_03/osm_xml.py#L18-L30) - аналогично модулю 1
+
+
+- module_05:
+	- [1](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_05/mk_html.py#L77-L92) - почему нельзя добавить метод mt_link в класс MakeMT ?
+
+
+
+
 
 
