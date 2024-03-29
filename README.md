@@ -350,64 +350,67 @@ def salary_calculation(sh):
 
 - общие комментарии:
 	
-	- Задача 1: Установить в PyCharm одно из расширений по контролю стиля кода: flake8, pep8, pylint... [Хабр](https://habr.com/ru/articles/681370/). Проверить код с его помощью. Исправить основные ошибки. Обратить особое внимание на:
-		- название переменных, функций и классов
-		- try except
-		- циклы
-		- порядок импортов
+	- Задача 1: 
+		- Установить в PyCharm одно из расширений по контролю стиля кода: flake8, pep8, pylint... [Хабр](https://habr.com/ru/articles/681370/). Проверить код с его помощью. Исправить основные ошибки. Обратить особое внимание на:
+			- название переменных, функций и классов
+			- try except
+			- циклы
+			- порядок импортов
 
-Наиболее гнетущие исправления можно игнорировать, но обязательно ознакомиться и понять.
+		- Наиболее гнетущие исправления можно игнорировать, но обязательно ознакомиться и понять.
 
 
-	- Задача 2: Задавать глобальные аргументы при вызове файлов-тестеров с помощью модуля argparse. C учетом изменений дополнить раздел "Тестирование" в README.
+	- Задача 2: 
+		- Описание задачи: Задавать глобальные аргументы при вызове файлов-тестеров с помощью модуля argparse. C учетом изменений дополнить раздел "Тестирование" в README.
 
-	Комментарий: сейчас глобальные аргументы определяются внутри тестеров (сайты, пути до файлов). Если я хочу запустить скрипт на другом сайте, мне нужно редактировать тестер. Я хочу динамически задавать глобальные аргументы при вызове `python3.9 tester_01.py` Для этого используется модуль argparse [Хабр](https://habr.com/ru/companies/ruvds/articles/440654/), но есть и аналоги (двойки).
-	```
-	import argparse
+		- Комментарий: сейчас глобальные аргументы определяются внутри тестеров (сайты, пути до файлов). Если я хочу запустить скрипт на другом сайте, мне нужно редактировать тестер. Я хочу динамически задавать глобальные аргументы при вызове `python3.9 tester_01.py` Для этого используется модуль argparse [Хабр](https://habr.com/ru/companies/ruvds/articles/440654/), но есть и аналоги (двойки).
 
-	if __name__ == "__main__":
+		```
+		import argparse
 
-	    parser = argparse.ArgumentParser()
-	    parser.add_argument('--telo', type=str, help='original')
-	    args = parser.parse_args()
-	    telo = args.telo
+		if __name__ == "__main__":
 
-	```
+		    parser = argparse.ArgumentParser()
+		    parser.add_argument('--telo', type=str, help='original')
+		    args = parser.parse_args()
+		    telo = args.telo
 
-	```
-	python3.9 tester_01.py --telo Vladimir Putin
-	```
+		```
 
-	Это работает окей, когда аргументов немного. Когда их много, их заносят в отдельный конфиг, а при вызове питона подают путь до файла с конфигом:
+		```
+		python3.9 tester_01.py --telo Vladimir Putin
+		```
 
-	```
-	import argparse
+		Это работает окей, когда аргументов немного. Когда их много, их заносят в отдельный конфиг, а при вызове питона подают путь до файла с конфигом:
 
-	if __name__ == "__main__":
+		```
+		import argparse
 
-	    parser = argparse.ArgumentParser()
-	    parser.add_argument('--config_path', type=str, help='file containing all arguments')
-	    args = parser.parse_args()
-	    config_path = args.config_path
-	    config = load_config(args.config_path)
-	    telo = config['telo']
-	    vasilich = config['vasilich']
-	    banketnyi = config['banketnyi']
-	    udmurt = config['udmurt']
-	    ...
+		if __name__ == "__main__":
 
-	```
+		    parser = argparse.ArgumentParser()
+		    parser.add_argument('--config_path', type=str, help='file containing all arguments')
+		    args = parser.parse_args()
+		    config_path = args.config_path
+		    config = load_config(args.config_path)
+		    telo = config['telo']
+		    vasilich = config['vasilich']
+		    banketnyi = config['banketnyi']
+		    udmurt = config['udmurt']
+		    ...
 
-	```
-	python3.9 tester_01.py -config_path configs/module_03.yml
-	```
+		```
 
-	В качестве конфига можно использовать обычный txt файл, но это неудобно. Обычно используются форматы с определенной разметкой. Например json или yaml:
-	- [Хабр 1](https://habr.com/ru/companies/rambler_and_co/articles/525498/)
-	- [Хабр 2](https://habr.com/ru/articles/485236/)
-	Я использую hyperpyyaml:
-		- [pip](https://pypi.org/project/HyperPyYAML/)
-		- [docs](https://github.com/speechbrain/HyperPyYAML/tree/main)
+		```
+		python3.9 tester_01.py -config_path configs/module_03.yml
+		```
+
+		В качестве конфига можно использовать обычный txt файл, но это неудобно. Обычно используются форматы с определенной разметкой. Например json или yaml:
+		- [Хабр 1](https://habr.com/ru/companies/rambler_and_co/articles/525498/)
+		- [Хабр 2](https://habr.com/ru/articles/485236/)
+		Я использую hyperpyyaml:
+			- [pip](https://pypi.org/project/HyperPyYAML/)
+			- [docs](https://github.com/speechbrain/HyperPyYAML/tree/main)
 	
 
 - module_01: 
