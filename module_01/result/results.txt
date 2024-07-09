@@ -3,7 +3,7 @@ Total score:
 
 
 Visible on the site:
-Количество вхождений: 467
+Количество вхождений: 451
 
 
 Frequent line in code tag:

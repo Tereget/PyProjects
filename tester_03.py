@@ -1,5 +1,6 @@
 import os
 
+from args_from_file import arg_pars
 from module_03.osm_xml import FindingInformationInXML
 
 
@@ -10,6 +11,12 @@ map_02 = f'{sdir}map2.osm'
 
 if __name__ == "__main__":
     print("Hello, World!")
+
+    rdir = os.path.join('module_03', 'result', '')
+    sdir = os.path.join('module_03', 'src', '')
+    arg_dict = arg_pars('--config_path')
+    map_01 = f'{sdir}{arg_dict["map_01"]}'
+    map_02 = f'{sdir}{arg_dict["map_02"]}'
 
     os.makedirs(rdir, exist_ok=True)
 

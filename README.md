@@ -18,7 +18,7 @@ OS Linux:
 	sudo apt install python3.9
 	
 OS Windows:
-	https://bangbangeducation.ru/point/razrabotka/kak-ustanovit-python/#2
+	https://bangbangeducation.ru/point/razrabotka/kak-ustanovit-python/
 	
 OS MacOS:
 	$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -52,11 +52,22 @@ C помощью venv:
 
 #### Тестирование:
 ```commandline
-	python3.9 tester_01.py
-	python3.9 tester_02.py
-	python3.9 tester_03.py
+	python3.9 tester_01.py --config_path configs/config_01.yml
+	python3.9 tester_01.py --config_path configs/config_01.json
+	python3.9 tester_01.py --config_path configs/config_01.txt
+	
+	python3.9 tester_02.py --config_path configs/config_02.yml
+	python3.9 tester_02.py --config_path configs/config_02.json
+	python3.9 tester_02.py --config_path configs/config_02.txt
+	
+	python3.9 tester_03.py --config_path configs/config_03.yml
+	python3.9 tester_03.py --config_path configs/config_03.json
+	python3.9 tester_03.py --config_path configs/config_03.txt
+	
 	python3.9 tester_04.py
+	
 	python3.9 tester_05.py
+	
 ```
 
 
@@ -350,7 +361,7 @@ def salary_calculation(sh):
 
 - общие комментарии:
 	
-	- Задача 1: 
+	- Задача 1: [+?] А что с трай и циклами может быть не так? Они либо будут работать либо нет. Ни одного цикла не было подчеркнутого.
 		- Установить в PyCharm одно из расширений по контролю стиля кода: flake8, pep8, pylint... [Хабр](https://habr.com/ru/articles/681370/). Проверить код с его помощью. Исправить основные ошибки. Обратить особое внимание на:
 			- название переменных, функций и классов
 			- try except
@@ -360,7 +371,7 @@ def salary_calculation(sh):
 		- Наиболее гнетущие исправления можно игнорировать, но обязательно ознакомиться и понять.
 
 
-	- Задача 2: 
+	- Задача 2: [+]
 		- Описание задачи: Задавать глобальные аргументы при вызове файлов-тестеров с помощью модуля argparse. C учетом изменений дополнить раздел "Тестирование" в README.
 
 		- Комментарий: сейчас глобальные аргументы определяются внутри тестеров (сайты, пути до файлов). Если я хочу запустить скрипт на другом сайте, мне нужно редактировать тестер. Я хочу динамически задавать глобальные аргументы при вызове `python3.9 tester_01.py` Для этого используется модуль argparse [Хабр](https://habr.com/ru/companies/ruvds/articles/440654/), но есть и аналоги (двойки).
@@ -414,7 +425,7 @@ def salary_calculation(sh):
 			- [docs](https://github.com/speechbrain/HyperPyYAML/tree/main)
 	
 
-- module_01: 
+- module_01: [+]
 	- [1](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_01/web.py#L137) - `str(cell.string).strip()`
 	- [2](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_01/web.py#L45-L57):
 		- Надо избавиться от try except
@@ -422,7 +433,7 @@ def salary_calculation(sh):
 		- Решение 2: Мне вообще не нравится идея определения декоратора внутри класса. Я бы вынес его, а при навешивании на методы класса добавлял бы аргумент `@dekor(error=self.error)`: [тут](https://advpyneng.readthedocs.io/ru/latest/book/08_decorators/with_args.html)
 
 
-- module_02:
+- module_02: [+]
 	- 6 - модуль не принимает файлы с определенным расширением ? Надо проверить расширение до того, как подавать в модуль. [-] Не понял. Зачем проверять? И на что проверять? В данном сценарии я избавлен от этих вопросов. Код съедает, что может съесть, и трансформирует то, что - не может.
 	```
 	    try:
@@ -459,11 +470,11 @@ def salary_calculation(sh):
 	```
 
 
-- module_03:
+- module_03: [+]
 	- [1](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_03/osm_xml.py#L18-L30) - аналогично модулю 1
 
 
-- module_05:
+- module_05: [+] Можно на изи. Но здесь была задача применить метод "наследования классов", а не написать максимально просто.
 	- [1](https://github.com/Tereget/PyProjects/blob/0c1d7e4b07458706682ed584a2efab08368e38b5/module_05/mk_html.py#L77-L92) - почему нельзя добавить метод mt_link в класс MakeMT ?
 
 

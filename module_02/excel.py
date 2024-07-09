@@ -13,34 +13,31 @@ class TableProcessing:
     def __init__(self, path_file_name):
         # Получаем данные из файла.
         if os.path.isfile(path_file_name):
-            try:
+            if not path_file_name.endswith('.xls'):
+                work_file = "work_file.xls"
+                funcs_for_excel.xls_converting(read_path=path_file_name, save_path=work_file)
+                self.wb = xlrd.open_workbook(work_file)
+                os.remove(work_file)
+            else:
                 self.wb = xlrd.open_workbook(path_file_name)
-            except xlrd.biffh.XLRDError:
-                funcs_for_excel.xls_converting(path_file_name)
-                self.wb = xlrd.open_workbook('work_file.xls')
-                os.remove('work_file.xls')
         else:
             print(f'Файл: {path_file_name} - отсутствует.')
-
 
     @dekor
     def salary_calculation(self):
         sh = self.wb.sheet_by_index(0)
         return funcs_for_excel.salary_calculation(sh)
 
-
     @dekor
     def nutritious_food(self):
         sh = self.wb.sheet_by_index(0)
         return funcs_for_excel.nutritious_food(sh)
-
 
     @dekor
     def food_energic(self, l_one='Справочник', l_two='Раскладка'):
         sh_1 = self.wb.sheet_by_name(l_one)
         sh_2 = self.wb.sheet_by_name(l_two)
         return funcs_for_excel.food_energic(sh_1, sh_2)
-
 
     @dekor
     def food_energic_all_days(self, l_one='Справочник', l_two='Раскладка'):

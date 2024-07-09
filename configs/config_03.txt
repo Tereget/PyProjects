@@ -1,0 +1,2 @@
+map_01 = map1.osm
+map_02 = map2.osm

@@ -1,0 +1,6 @@
+file_01 = salaries.xlsx
+file_02 = trekking1.xlsx
+file_03 = trekking2.xlsx
+file_04 = trekking3.xlsx
+table_dir = roga
+table_arhiv = rogaikopyta.zip

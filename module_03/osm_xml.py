@@ -3,6 +3,20 @@ import os
 import xmltodict
 
 
+def dekor(func):
+    """
+    Трай-эксепт, потому что у функций разное количество аргов. Если убирать трай-эксепт, то либо
+    придётся дубликат декоратора делать, либо вносить фиктивные арги в функции для выравнивания.
+    """
+
+    def wrapper(self, *args):
+        if self.parsedxml == None:
+            return 'Файл не идентифицирован'
+        return func(self, *args)
+
+    return wrapper
+
+
 class FindingInformationInXML:
     def __init__(self, file_name):
         # Получаем данные из файла в текстовом виде.
@@ -15,23 +29,8 @@ class FindingInformationInXML:
             print('Файл не идентифицирован')
 
 
-    def dekor(func):
-        """
-        Трай-эксепт, потому что у функций разное количество аргов. Если убирать трай-эксепт, то либо
-        придётся дубликат декоратора делать, либо вносить фиктивные арги в функции для выравнивания.
-        """
-        def wrapper(self, tag='node'):
-            if self.parsedxml == None:
-                return 'Файл не идентифицирован'
-            try:
-                return func(self, tag)
-            except TypeError:
-                return func(self)
-        return wrapper
-
-
     @dekor
-    def score_tag_in_node(self):
+    def score_tag_in_node(self, *_):
         """
         Количество точечных объектов с вложенным тэгом "tag"/без тэга.
         """
@@ -44,9 +43,8 @@ class FindingInformationInXML:
                 score_minus += 1
         return f'{score_plus} {score_minus}'
 
-
     @dekor
-    def score_azs_on_node(self, tag='node'):
+    def score_azs_on_node(self, tag='node', *_):
         """
         Количество заправок (точечные объекты).
         """
@@ -59,17 +57,14 @@ class FindingInformationInXML:
                 for tag in nt:
                     if tag['@k'] == 'amenity' and tag['@v'] == 'fuel':
                         score_azs += 1
-
         return score_azs
 
-
     @dekor
-    def score_azs_all(self):
+    def score_azs_all(self, *_):
         """
         Количество заправок (общее количество).
         """
         score_azs = 0
         for point in self.parsedxml['osm']:
             score_azs += self.score_azs_on_node(point)
-
         return score_azs

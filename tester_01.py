@@ -1,18 +1,20 @@
 import os
 
+from args_from_file import arg_pars
 from module_01.web import WordCounterOnTheSite
 
 
-rdir = os.path.join('module_01', 'result', '')
-site_01 = 'https://stepik.org/media/attachments/lesson/209717/1.html'
-site_02 = 'https://ru.wikipedia.org/wiki/Python'
-site_03 = 'https://stepik.org/media/attachments/lesson/209719/2.html'
-site_04 = 'https://stepik.org/media/attachments/lesson/209723/4.html'
-word = 'Python'
-tag = 'code'
-
 if __name__ == "__main__":
     print("Hello, World!")
+
+    rdir = os.path.join('module_01', 'result', '')
+    arg_dict = arg_pars('--config_path')
+    site_01 = arg_dict['site_01']
+    site_02 = arg_dict['site_02']
+    site_03 = arg_dict['site_03']
+    site_04 = arg_dict['site_04']
+    word = arg_dict['word']
+    tag = arg_dict['tag']
 
     os.makedirs(rdir, exist_ok=True)
 

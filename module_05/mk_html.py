@@ -27,7 +27,6 @@ class MakeMT:
     def __init__(self):
         self.start, self.finish = mk_html()
 
-
     def index_html(self):
         """
         Главная HTML-страница.

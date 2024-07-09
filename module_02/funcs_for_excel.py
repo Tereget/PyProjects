@@ -16,13 +16,13 @@ def dekor(func):
     return wrapper
 
 
-def xls_converting(path_file_name):
+def xls_converting(read_path, save_path):
     """
     Конвертация в читаемый формат.
     """
 
-    workbook = Workbook(path_file_name)
-    workbook.save("work_file.xls")
+    workbook = Workbook(read_path)
+    workbook.save(save_path)
 
 
 def salary_calculation(sh):
@@ -116,7 +116,6 @@ def nutritious_food(sh):
         sp_el.sort()
         for name in sp_el[2:]:
             sp_new.append(name)
-
     return sp_new
 
 

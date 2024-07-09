@@ -74,7 +74,6 @@ def sinus_shifted():
     return fig
 
 
-
 def osm_points():
     """
     График типов точек OSM с изменённым размером изображения.
